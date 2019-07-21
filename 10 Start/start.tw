@@ -1,0 +1,23 @@
+
+::Start
+<<set $menu = false>>\
+<<set UInv.CreateBag("chest")>>\
+Who are you?
+
+Name: <<textbox "$player.name" "Wanderer">>
+
+<<radiobutton "$player.gender" "male" checked>> Male <<radiobutton "$player.gender" "female">> Female
+
+[[Continue|StartingArea][$showFooter = true]]
+
+
+
+::StartingArea
+You're in a forest clearing.
+
+<<link "belt">><<nobr>>
+    <<set UInv.AddItem("Inventory", "belt")>>
+<</nobr>><</link>>
+<<link "dagger">><<nobr>>
+    <<set UInv.AddItem("Inventory", "dagger")>>
+<</nobr>><</link>>

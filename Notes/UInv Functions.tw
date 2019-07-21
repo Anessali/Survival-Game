@@ -1,0 +1,7 @@
+/*  UInv Functions I consider important.  */
+
+
+
+
+<<set UInv.AddItem("Test", "belt", 1, "black belt")>>
+<<set UInv.SetItemPropertyValue("Test", "black belt", "magic", 1)>>

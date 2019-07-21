@@ -1,0 +1,13 @@
+:: StorySettings
+ifid:a175b027-1e37-43ec-94d6-1cbac6361ca5
+
+:: StoryTitle
+Survival Game
+
+
+:: StoryInit
+<<include "StoryVariables">>
+<<include "PlayerStats">>
+<<include "MonsterStats">>
+<<include "PlayerSkills">>
+<<include "Inventory">>

@@ -1,0 +1,5 @@
+:: SurvivalWidgets [widget]
+<<widget "drink">><<nobr>>
+    You take a drink.
+    <<set $player.thirst = 0>>
+<</nobr>><</widget>>

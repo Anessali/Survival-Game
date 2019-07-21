@@ -1,0 +1,26 @@
+:: Forage
+What do you want to forage for?
+
+<<link "Food" "Forage-Food">>
+
+<</link>>
+<<link "Water" "Forage-Water">>
+
+<</link>>
+<<link "Materials" "Forage-Materials">>
+
+<</link>>
+
+[[Nevermind|$passageName][$showFooter = true]]
+
+
+:: Forage-Food
+Food
+
+
+:: Forage-Water
+Water
+
+
+:: Forage-Materials
+Materials

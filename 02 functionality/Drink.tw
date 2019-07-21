@@ -1,0 +1,4 @@
+:: Drink
+You take a drink.
+
+[[return|$passage][$showFooter = true]]

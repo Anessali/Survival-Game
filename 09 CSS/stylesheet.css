@@ -1,0 +1,78 @@
+/*:: Story Stylesheet [stylesheet]*/
+body {
+  background-color: black;
+  /* background: url(http://tjliggett.com/Games/images/simon-matzinger-380457.jpg) no-repeat; */
+  /* background: url(http://www.resilience.org/wp-content/uploads/2017/11/simon-matzinger-380457.jpg); */
+  background: url("Images/simon-matzinger-380457.jpg");
+  background-size: cover;
+}
+
+#passages {
+	  font-size: 20px;
+  	text-indent: 40px each-line;
+    background-color: #482714;
+    padding: 10px;
+    border: 5px solid black;
+    border-radius: 20px;
+}
+
+.passage a{
+  color: #EEDB74;
+}
+
+.passage a:hover{
+  color: #C57200;
+  text-decoration: none;
+}
+
+/* menu */
+
+#ui-bar{
+    background-color: #482714;
+    border-right: 5px solid black;
+}
+
+#ui-bar h1, h2, h3, h4, h5{
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+#menu li a {
+	text-transform: none;
+}
+
+#menu li a:hover{
+    background-color: #6C4B1A;
+}
+
+#text {
+  background-color: blue;
+}
+#ui-bar-toggle:hover{
+    background-color: #2B5A23;
+    border-color: #506D41;
+}
+/* Save Dialog */
+#ui-dialog-titlebar{
+    background-color: #482714;
+    border-bottom: 3px solid white;
+}
+
+#ui-dialog-body{
+    background-color: #482714;
+}
+
+button {
+    background-color: #2B5A23;
+    border-color: #506D41;
+}
+
+button:hover{
+    background-color: #828345;
+    border-color: #544218;
+}
+
+.delete:hover, #saves-clear:hover{
+    background-color: #CC4C1F;
+    border-color: #DF7500;
+}

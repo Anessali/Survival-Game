@@ -1,0 +1,63 @@
+:: StoryCaption
+<h2><<= $displayDay[$time.dayNum]>></h2>\
+<h3><<print $displayTime[$time.timeNum]>></h3>\
+<h3><<print $displayClock>></h3>\
+HP: $player.hp/$player.maxHp
+
+Hunger: $player.hunger/$player.maxHunger
+Thirst: $player.thirst/$player.maxThirst
+Fatigue: $player.fatigue/$player.maxFatigue
+
+Waterskin($waterSkin)
+
+
+:: StoryMenu
+<<link "Bag" "Bag">>
+	<<if $menu == false>>
+		<<set $exitMenuPassage = passage()>>
+	<</if>>
+<</link>>
+<<link "Outfit" "Outfit">>
+	<<if $menu == false>>
+		<<set $exitMenuPassage = passage()>>
+	<</if>>
+<</link>>
+<<link "Skills" "Skills">>
+	<<if $menu == false>>
+		<<set $exitMenuPassage = passage()>>
+	<</if>>
+<</link>>
+
+
+:: Outfit
+<<set $menu = true>>\
+<<set $showFooter = false>>\
+Will become outfits.
+
+<<exitMenu>>
+
+
+:: Bag
+<<set $menu = true>>\
+<<set $showFooter = false>>\
+You currently don't have a bag and can only carry so many things.
+
+Number of items: <<print UInv.GetItemsArray("Inventory").length>> / 3
+
+<<set _Items = UInv.GetItemsArray("Inventory")>>\
+<<if _Items.length == 0>><<nobr>>
+    Your bag is empty
+<</nobr>><<else>><<nobr>>
+    <<for _i = 0; _i < _Items.length; _i++>>
+        _Items[_i] (<<print UInv.BagHasItem("Inventory", _Items[_i])>>)<br>
+    <</for>>
+<</nobr>><</if>>
+
+<<exitMenu>>
+
+
+::Skills
+<<set $menu = true>>\
+Will become skills.
+
+<<exitMenu>>

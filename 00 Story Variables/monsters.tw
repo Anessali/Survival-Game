@@ -1,0 +1,9 @@
+:: MonsterStats
+<<set $monster = {
+  name: "",
+  hp: 0,
+  maxHp: 0,
+  wound : {
+    chance: 0.5
+  }
+}>>

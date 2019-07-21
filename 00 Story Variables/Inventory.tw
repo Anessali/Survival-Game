@@ -1,0 +1,14 @@
+
+::Inventory
+<<set UInv.CreateBag("Inventory")>>
+
+
+/*
+<<set $sword = {
+    name: "Old Sword",
+    damage: 2,
+    description: "An old, rusty sword."
+}>>
+
+<<set $inventory = []>>
+*/

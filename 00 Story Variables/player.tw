@@ -1,0 +1,49 @@
+:: PlayerStats
+<<set $player = {
+	name : "Shiani",
+	lastName : "Terre",
+	gender: "female",
+	race: "human",
+	age : 17,
+	hp : 20,
+	maxHp : 20,
+	hunger: 0,
+	maxHunger: 100,
+	thirst: 0,
+	maxThirst: 100,
+	fatigue: 0,
+	maxFatigue: 100,
+	hat: {
+		name: "None",
+		description: "",
+		warmth: 0
+	},
+	mask:{
+		name: "None",
+		description: "",
+		warmth: 0
+	},
+	shirt : {
+		name: "Cotton Shirt",
+		description: "A simple cotton shirt.",
+		warmth: 1
+	},
+	pants : {
+		name: "Cloth Pants",
+		description: "A pair of cloth pants.",
+		warmth: 1
+	},
+	shoes : {
+		name: "Worn Leather Boots",
+		description: "A pair of worn leather boots.",
+		warmth: 1
+	},
+	bag : [
+		{
+			id: 0,
+			name: "Dull Knife",
+			description: "A dull iron knife."
+		}
+	]
+}>>
+

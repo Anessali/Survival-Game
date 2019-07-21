@@ -1,0 +1,29 @@
+:: PlayerSkills
+<<set $skill = {
+    crafting : {
+        level: 1,
+        exp: 0
+    },
+    foraging : {
+        level: 1,
+        exp: 0
+    },
+    marksmanship : {
+        level: 1,
+        exp: 0
+    },
+    swordsmanship : {
+        level: 1,
+        exp: 0
+    },
+    tracking : {
+        level: 1,
+        exp: 0
+    },
+}>>
+
+<<set $skill.crafting.nextLevel = $skill.crafting.level * 25>>
+<<set $skill.foraging.nextLevel = $skill.foraging.level * 25>>
+<<set $skill.marksmanship.nextLevel = $skill.marksmanship.level * 25>>
+<<set $skill.swordsmanship.nextLevel = $skill.swordsmanship.level * 25>>
+<<set $skill.tracking.nextLevel = $skill.tracking.level * 25>>

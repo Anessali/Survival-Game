@@ -1,0 +1,60 @@
+:: StoryVariables
+/*  Commonly used booleans  */
+<<set $menu = false>>
+
+<!-- 0 - 6 -->
+<<set $displayDay = [
+		"Monday", /* 0 */
+		"Tuesday", /* 1 */
+		"Wednesday", /* 2 */
+		"Thursday", /* 3 */
+		"Friday", /* 4 */
+		"Saturday", /* 5 */
+		"Sunday" /* 6 */
+]>>
+
+<!-- 0 - 9 -->
+<<set $displayTime = [
+		"Early Morning", /* 3 - 6 : 0*/
+		"Morning", /* 6 - 9 : 1*/
+		"Late Morning", /* 9 - 11 : 2*/
+		"Noon", /* 11 - 13 : 3*/
+		"Afternoon", /* 13 - 15 : 4*/
+		"Evening", /* 15 - 18 : 5*/
+		"Early Night", /* 18 - 20 : 6*/
+		"Night", /* 20 - 23 : 7*/
+		"Midnight", /* 23 - 1 : 8*/
+		"Late Night" /* 1 - 3 : 9*/
+]>>
+
+
+<!-- Time declared as an object so all values can be returned by changeTime() -->
+
+<<set $time = {
+	hours: 8,
+	minutes: 0,
+	dayNum: 0,
+	timeNum: 1,
+	oldHours: 8
+}>>
+
+<<set $hours = 0>>
+<<set $minutes = 0>>
+<<set $displayClock = clockDisplay($time.hours, $time.minutes)>>
+
+<<set $waterSkin = 3>>
+
+<<set $sleeping = false>>
+<<set $biome = "forest">>
+<<set $area = "outside">>
+<<set $camp = false>>
+<<set $waterSoruce = false>>
+
+
+<!-- Location Links -->
+<<set $location = {
+		forest : [
+				"StartingArea",
+				"ForestRiver1"
+		]
+}>>

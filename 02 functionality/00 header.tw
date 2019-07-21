@@ -1,0 +1,22 @@
+:: PassageHeader
+<<if $player.thirst > 30 && $waterSkin > 0>>\
+    <<set <<set $waterSkin -= 1>>\
+    <<drink>>
+<</if>>\
+<<if displayStatus($player) != ``>>\
+    @@color:orange;<<print displayStatus($player)>>@@
+    <<else>>\
+<</if>>\
+\
+<<set $time.hours += $hours>>\
+<<set $time.minutes += $minutes>>\
+<<set $time = changeTime($time)>>\
+<<set $player = updateSurvivalStats($hours, $player, $sleeping)>>\
+<<if $sleeping>><<set $sleeping = false>><</if>>\
+<<set $hours = 0>>\
+<<set $minutes = 0>>\
+<<set $time.timeNum = getTimeOfDay($time.hours)>>\
+<<set $displayClock = clockDisplay($time.hours, $time.minutes)>>\
+\
+<<if $anaris>><<set $randomEvent = random(30)>><</if>>\
+<<if $forest>><</if>>\

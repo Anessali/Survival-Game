@@ -1,13 +1,11 @@
 ::Links [widget]
 /*  Widget used to exit the menu  */
-<<widget "exitMenu">>
-    <<nobr>>
-        <<link "Return" $exitMenuPassage>>
-            <<set $menu = false>>
-            <<set $showFooter = true>>
-        <</link>>
-    <</nobr>>
-<</widget>>
+<<widget "exitMenu">><<nobr>>
+    <<link "Return" $exitMenuPassage>>
+        <<set $menu = false>>
+        <<set $showFooter = true>>
+    <</link>>
+<</nobr>><</widget>>
 
 
 <<widget "explore">><<nobr>>

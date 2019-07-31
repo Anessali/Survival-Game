@@ -12025,6 +12025,7 @@ UInvObject.prototype = (function () {
 
 		// Start of example static items.
 
+
 			Items.backpack = {
 				type : ["wearable", "container"],
 				UInvPocket : { inside: "backpack", "front pocket": "-" },  // pockets: "inside" and "front pocket"

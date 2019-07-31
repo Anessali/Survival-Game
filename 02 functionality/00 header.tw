@@ -1,9 +1,9 @@
 :: PassageHeader
 <<if $player.thirst > 30 && $waterSkin > 0>>\
-    <<set <<set $waterSkin -= 1>>\
+    <<set $waterSkin -= 1>>\
     <<drink>>
 <</if>>\
-<<if displayStatus($player) != ``>>\
+<<if displayStatus($player) != "">>\
     @@color:orange;<<print displayStatus($player)>>@@
     <<else>>\
 <</if>>\

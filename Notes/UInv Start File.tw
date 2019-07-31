@@ -1,3 +1,4 @@
+::passage 1
 ''Note:'' You should see two error messages below if you have
 {{{<<run UInv.SetUserAlerts(UInv.ERROR_THROW_ERROR + UInv.ERROR_SHOW_PASSAGE_NAME)>>}}}
 in the StoryInit passage (by default that line is commented out).  This is done intentionally as an example of how UInv can help you spot and prevent errors in your code.
@@ -70,12 +71,105 @@ Go to [[passage 4]]
 
 
 ::passage 4
+''Note:'' You should see one error message below if you have
+{{{<<run UInv.SetUserAlerts(UInv.ERROR_THROW_ERROR + UInv.ERROR_SHOW_PASSAGE_NAME)>>}}}
+in the StoryInit passage (by default that line is commented out).  This is done intentionally as an example of how UInv can help you spot and prevent errors in your code.
+
+''Copy bag "Test2" to "Test3":'' <<if UInv.CopyBag("Test2", "Test3")>>Success.<<else>>$UInvLastErrorMessage<</if>>
+''List of items in "Test":'' <<print UInv.DisplayItemList("Test")>>
+''List of items in "Test1":'' <<print UInv.DisplayItemList("Test1")>>
+''List of items in "Test2":'' <<print UInv.DisplayItemList("Test2")>>
+''List of items in "Test3":'' <<print UInv.DisplayItemList("Test3")>>
+''Add "pants" to bag "Test2":'' <<if UInv.AddItem("Test2", "pants")>>Success.<<else>>$UInvLastErrorMessage<</if>>
+''List of all bags:'' <<set _Bags = UInv.GetBagsArray()>><<if _Bags.length == 0>>(empty)<<else>><<for _i = 0; _i < _Bags.length; _i++>>_Bags[_i]<<if _i < _Bags.length - 1>> & <</if>><</for>><</if>>
+
+ -- ''Note:'' As examples, some of the previous parts of the code showed a couple of different ways to display the list of items in a bag.  In the code below it shows the best ways to display them using the {{{DisplayItemList}}} function and the SugarCube {{{<<print>>}}} macro. --
+
+''List of items in "Test":'' <<print UInv.DisplayItemList("Test", "plural", "nothing", ",", "and", "singular")>>
+''List of items in "Test2":'' <<=UInv.DisplayItemList("Test2", "plural", "nothing", ",", "and", "singular")>>
+''List of items in "Test3":'' <<=UInv.DisplayItemList("Test3", "plural", "nothing", ",", "and", "singular")>>
+''Total unique items in bags "Test" and "Test3":'' <<print UInv.GetItemCount(["Test", "Test3"])>>
+''Total items in bags "Test" and "Test3":'' <<print UInv.GetItemCountFull(["Test", "Test3"])>>
+''Rename "black belt" property "magic" to "magic bonus":'' <<if UInv.RenameItemProperty("Test", "black belt", "magic", "magic bonus")>>Success<<else>>$UInvLastErrorMessage<</if>>
+''Set the black belt's "description" property to the value of "A magic belt.":'' <<if UInv.SetItemPropertyValue("Test", "black belt", "description", "A magic belt.")>>Success<<else>>$UInvLastErrorMessage<</if>>
+''Set the black belt's "singular" property to the value of "a magic belt":'' <<if UInv.SetItemPropertyValue("Test", "black belt", "singular", "a magic belt")>>Success<<else>>$UInvLastErrorMessage<</if>>
+''Set the black belt's "plural" property to the value of "magic belts":'' <<if UInv.SetItemPropertyValue("Test", "black belt", "plural", "magic belts")>>Success<<else>>$UInvLastErrorMessage<</if>><<set _Item = UInv.GetItemObject("Test", "black belt")>><<for _Prop, _Val range _Item>><br>- _Prop = _Val<</for>>
+''Rename "black belt" to "magic belt":'' <<if UInv.RenameItem("Test", "black belt", "magic belt")>>Success<<else>>$UInvLastErrorMessage<</if>>
+''List of item names in "Test":'' <<print UInv.GetItemsArray("Test")>>
+''List of items in "Test":'' <<=UInv.DisplayItemList("Test", "plural", "nothing", ",", "and", "singular")>>
+
+''Note:'' You should see one error message pop up when you go to the next passage if you have error displaying enabled.  This is done intentionally as an example of how UInv can help you spot and prevent errors in your code.
+
+Go to [[passage 5]]
 
 
+::passage 5
+''Note:'' You should see one error message below if you have
+{{{<<run UInv.SetUserAlerts(UInv.ERROR_THROW_ERROR + UInv.ERROR_SHOW_PASSAGE_NAME)>>}}}
+in the StoryInit passage (by default that line is commented out).  This is done intentionally as an example of how UInv can help you spot and prevent errors in your code.
+
+''List of items in "Test":'' <<=UInv.DisplayItemList("Test", "plural", "nothing", ",", "and", "singular")>>
+''List of items in "Test2":'' <<=UInv.DisplayItemList("Test2", "plural", "nothing", ",", "and", "singular")>>
+''List of items in "Test3":'' <<=UInv.DisplayItemList("Test3", "plural", "nothing", ",", "and", "singular")>>
+''Move 1 "belt" from bag "Test" to bag "Test2":'' <<if UInv.MoveItem("Test", "Test2", "belt", 1)>>Success.<<else>>$UInvLastErrorMessage<</if>>
+''Move "pants" from bag "Test" to bag "Test3":'' <<if UInv.MoveItem("Test", "Test3", "pants", 1)>>Success.<<else>>$UInvLastErrorMessage<</if>>
+''Move "magic belt" from bag "Test" to bag "Test3":'' <<if UInv.MoveItem("Test", "Test3", "magic belt")>>Success.<<else>>$UInvLastErrorMessage<</if>>
+''List of items in "Test":'' <<=UInv.DisplayItemList("Test", "plural", "nothing", ",", "and", "singular")>>
+''List of items in "Test2":'' <<=UInv.DisplayItemList("Test2", "plural", "nothing", ",", "and", "singular")>>
+''List of items in "Test3":'' <<=UInv.DisplayItemList("Test3", "plural", "nothing", ",", "and", "singular")>>
+''List of properties for the "magic belt":'' <<set _Item = UInv.GetItemObject("Test3", "magic belt")>><<if UInv.isObject(_Item)>><<for _Prop, _Val range _Item>><br>- _Prop = _Val<</for>><<else>>$UInvLastErrorMessage<</if>>
+''Add bag "Test1" as bag type "backpack":'' <<if UInv.AddBag("Test1", "backpack")>>Success.<<else>>$UInvLastErrorMessage<</if>>
+''List of items in "Test1":'' <<=UInv.DisplayItemList("Test1", "plural", "nothing", ",", "and", "singular")>>
+''Add bag "Treasures":'' <<if UInv.AddBag("Treasures")>>Success.<<else>>$UInvLastErrorMessage<</if>>
+
+ -- ''Note:'' Because of how the potion is defined in ''ItemData'', it returns a random colored potion when it is added.  If you go either back or forward a passage, and then return to this passage, the potion here will likely be a different color. --
+ 
+''List of items in "Treasures":'' <<=UInv.DisplayItemList("Treasures", "plural", "nothing", ",", "and", "singular")>>
+''Add bag "Treasure bag":'' <<if UInv.AddBag("Treasure bag")>>Success.<<else>>$UInvLastErrorMessage<</if>>
+
+ -- ''Note:'' Because of how "Treasure bag" is defined in ''BagData'', it returns a random amount of coins and a random item from the "treasures" bag's default item list when it is added.  If you go either back or forward a passage, and then return to this passage, the "Treasure bag" here will likely have different items. --
+ 
+''List of items in "Treasure bag":'' <<=UInv.DisplayItemList("Treasure bag", "plural", "nothing", ",", "and", "singular")>>
+
+Go to [[passage 6]]
 
 
+::passage 6
+''List of items in "Treasures":'' <<=UInv.DisplayItemList("Treasures", "plural", "nothing", ",", "and", "singular")>>
+''List of items in "Treasure bag":'' <<=UInv.DisplayItemList("Treasure bag", "plural", "nothing", ",", "and", "singular")>>
+''Create bag "Potions":'' <<if UInv.CreateBag("Potions")>>Success.<<else>>$UInvLastErrorMessage<</if>>
+
+ -- ''Note:'' The "rainbow potion" item is set up in ''ItemData'' to randomly return a red, orange, yellow, green, blue, or purple potion.  This means that this is a variable item, which also meanings that it needs to have a "UInvVariableType" property.  Because of the "UInvVariableType" property that this item has, UInv will try to group items of this same type together if they are completely identical (other than their quantity), otherwise it will create a new stack of items.  Keep clicking the "add" button below to see how the matching items automatically stack together.
+Since variable items may have multiple item names, you can find the variable items by looking for items of that default type.  Thet "Delete" button below uses the ''GetItemByType'' function to find a random item of the "rainbow potion" type to be deleted. --
+
+''Add item "rainbow potion" to bag "Potions":'' <<button "Click to add a potion">><<if UInv.AddItem("Potions", "rainbow potion")>>Success.<<else>>$UInvLastErrorMessage<</if>><<replace "#Potions">>''List of items in "Potions":'' <<=UInv.DisplayItemList("Potions", "plural", "none", ",", "and", "singular")>><</replace>><</button>>
+''Delete "rainbow potion" items from bag "Potions":'' <<button "Click to delete 'rainbow potions'">><<set _tmp = UInv.GetItemByType("Potions", "rainbow potion")>><<if (_tmp != "") && (UInv.DeleteItem("Potions", _tmp))>>Success.<<else>>$UInvLastErrorMessage<</if>><<replace "#Potions">>''List of items in "Potions":'' <<=UInv.DisplayItemList("Potions", "plural", "none", ",", "and", "singular")>><</replace>><</button>>
+<span id="Potions">''List of items in "Potions":'' <<=UInv.DisplayItemList("Potions", "plural", "none", ",", "and", "singular")>></span>
+
+Go to [[passage 7]]
+
+::passage 7
+Here's a version of what you saw on the previous page, but in an item table format.
+
+Treasures:
+<div data-uinv="table" class="Treasures-table" id="Treasures" data-rowclass="Treasures-row" data-cellclass="Treasures-cell" data-itemclass="Treasures-item" data-iconclass="Treasures-icon" data-textclass="Treasures-text" data-cellrows="3" data-cellcolumns="5" data-cellmargin="5" data-bordermargin="4"></div>
+''Add item "rainbow potion" to bag "Treasures":'' <<button "Click to add a potion">><<if UInv.AddItem("Treasures", "rainbow potion")>>Success.<<else>>$UInvLastErrorMessage<</if>><<replace "#TreasureList">>''List of items in "Treasures":'' <<=UInv.DisplayItemList("Treasures", "plural", "none", ",", "and", "singular")>><</replace>><</button>>
+''Delete "rainbow potion" items from bag "Treasures":'' <<button "Click to delete 'rainbow potions'">><<set _tmp = UInv.GetItemByType("Treasures", "rainbow potion")>><<if (_tmp != "") && (UInv.DeleteItem("Treasures", _tmp))>>Success.<<else>>$UInvLastErrorMessage<</if>><<replace "#TreasureList">>''List of items in "Treasures":'' <<=UInv.DisplayItemList("Treasures", "plural", "none", ",", "and", "singular")>><</replace>><</button>>
+<span id="TreasureList">''List of items in "Treasures":'' <<=UInv.DisplayItemList("Treasures", "plural", "none", ",", "and", "singular")>></span>
+
+[[Reload current passage|passage 7]]
+Go to [[passage 8]]<<if !UInv.BagExists("Chest")>><<run UInv.CreateBag("Chest")>><</if>>
 
 
+::passage 8
+And here's an example of how you can transfer items between "bags".  You can click anywhere (not including the UI bar on the left or the scrollbars) to cancel the radial menu.
 
+Treasures:
+<div data-uinv="table" class="Treasures-table" id="Treasures" data-rowclass="Treasures-row" data-cellclass="Treasures-cell" data-itemclass="Treasures-item" data-iconclass="Treasures-icon" data-textclass="Treasures-text" data-cellrows="3" data-cellcolumns="5" data-cellmargin="5" data-bordermargin="4"></div>
+Chest:
+<div data-uinv="table" class="Chest-table" id="Chest" data-rowclass="Chest-row" data-cellclass="Chest-cell" data-itemclass="Chest-item" data-iconclass="Chest-icon" data-textclass="Chest-text" data-cellrows="3" data-cellcolumns="3" data-cellmargin="3" data-bordermargin="7"></div>
 
+(more function tests/examples will go here later)
+
+[[Reload current passage|passage 8]]
 

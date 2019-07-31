@@ -3,12 +3,12 @@
 <<set UInv.CreateBag("Inventory")>>
 
 
-/*
-<<set $sword = {
+<<set _sword = {
     name: "Old Sword",
     damage: 2,
     description: "An old, rusty sword."
 }>>
 
 <<set $inventory = []>>
-*/
+
+<<set $inventory.push(_sword)>>

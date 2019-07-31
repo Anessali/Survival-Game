@@ -1,0 +1,1 @@
+This is a text-based survival game that currently doesn't have a name. The game is in pre-alpha and there's not much to see, but time does progress and you can do basic actions like sleeping or drinking water

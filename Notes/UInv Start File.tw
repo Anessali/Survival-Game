@@ -143,7 +143,14 @@ Go to [[passage 6]]
 Since variable items may have multiple item names, you can find the variable items by looking for items of that default type.  Thet "Delete" button below uses the ''GetItemByType'' function to find a random item of the "rainbow potion" type to be deleted. --
 
 ''Add item "rainbow potion" to bag "Potions":'' <<button "Click to add a potion">><<if UInv.AddItem("Potions", "rainbow potion")>>Success.<<else>>$UInvLastErrorMessage<</if>><<replace "#Potions">>''List of items in "Potions":'' <<=UInv.DisplayItemList("Potions", "plural", "none", ",", "and", "singular")>><</replace>><</button>>
-''Delete "rainbow potion" items from bag "Potions":'' <<button "Click to delete 'rainbow potions'">><<set _tmp = UInv.GetItemByType("Potions", "rainbow potion")>><<if (_tmp != "") && (UInv.DeleteItem("Potions", _tmp))>>Success.<<else>>$UInvLastErrorMessage<</if>><<replace "#Potions">>''List of items in "Potions":'' <<=UInv.DisplayItemList("Potions", "plural", "none", ",", "and", "singular")>><</replace>><</button>>
+''Delete "rainbow potion" items from bag "Potions":'' 
+<<button "Click to delete 'rainbow potions'">>
+    <<set _tmp = UInv.GetItemByType("Potions", "rainbow potion")>>
+    <<if (_tmp != "") && (UInv.DeleteItem("Potions", _tmp))>>Success.
+    <<else>>$UInvLastErrorMessage
+    <</if>>
+    <<replace "#Potions">>''List of items in "Potions":'' <<=UInv.DisplayItemList("Potions", "plural", "none", ",", "and", "singular")>><</replace>>
+<</button>>
 <span id="Potions">''List of items in "Potions":'' <<=UInv.DisplayItemList("Potions", "plural", "none", ",", "and", "singular")>></span>
 
 Go to [[passage 7]]

@@ -1,8 +1,8 @@
 :: PlayerStats
 <<set $player = {
-	name : "Shiani",
-	lastName : "Terre",
-	gender: "female",
+	name : "Wanderer",
+	lastName : "",
+	gender: "male",
 	race: "human",
 	age : 17,
 	hp : 20,
@@ -37,13 +37,6 @@
 		name: "Worn Leather Boots",
 		description: "A pair of worn leather boots.",
 		warmth: 1
-	},
-	bag : [
-		{
-			id: 0,
-			name: "Dull Knife",
-			description: "A dull iron knife."
-		}
-	]
+	}
 }>>
 

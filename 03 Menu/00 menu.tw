@@ -42,22 +42,18 @@ Will become outfits.
 <<set $showFooter = false>>\
 You currently don't have a bag and can only carry so many things.
 
-Number of items: <<print UInv.GetItemsArray("Inventory").length>> / 3
+Number of items: <<print $inventory.length>> / 3
 
-<<set _Items = UInv.GetItemsArray("Inventory")>>\
-<<if _Items.length == 0>><<nobr>>
-    Your bag is empty
-<</nobr>><<else>><<nobr>>
-    <<for _i = 0; _i < _Items.length; _i++>>
-        _Items[_i] (<<print UInv.BagHasItem("Inventory", _Items[_i])>>)<br>
-    <</for>>
-<</nobr>><</if>>
+Test 1: <<set $test = GetItem($inventory)>>
+
+<<print $test.name>>
 
 <<exitMenu>>
 
 
 ::Skills
 <<set $menu = true>>\
+<<set $showFooter = false>>\
 Will become skills.
 
 <<exitMenu>>

@@ -1,14 +1,25 @@
 
 ::Inventory
-<<set UInv.CreateBag("Inventory")>>
-
-
 <<set _sword = {
+    id: 2,
     name: "Old Sword",
     damage: 2,
     description: "An old, rusty sword."
 }>>
 
-<<set $inventory = []>>
+<<set $inventory = [
+    {
+        id : 0,
+        name : "rock",
+        type : "misc",
+        qty : 2
+    },
+    {
+        id : 1,
+        name : "wood",
+        type : "misc",
+        qty : 3
+    }
+]>>
 
 <<set $inventory.push(_sword)>>

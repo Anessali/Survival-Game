@@ -1,7 +1,6 @@
 
 ::Start
 <<set $menu = false>>\
-<<set UInv.CreateBag("chest")>>\
 Who are you?
 
 Name: <<textbox "$player.name" "Wanderer">>
@@ -13,14 +12,6 @@ Name: <<textbox "$player.name" "Wanderer">>
 
 
 ::StartingArea
-<<set $test = "forest">>\
 You're in a forest clearing.
 
 <<print $inventory[0].description>>
-
-<<link "belt">><<nobr>>
-    <<set UInv.AddItem("Inventory", "belt")>>
-<</nobr>><</link>>
-<<link "dagger">><<nobr>>
-    <<set UInv.AddItem("Inventory", "dagger")>>
-<</nobr>><</link>>

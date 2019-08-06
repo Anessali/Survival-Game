@@ -5,3 +5,4 @@
 
 <<set UInv.AddItem("Test", "belt", 1, "black belt")>>
 <<set UInv.SetItemPropertyValue("Test", "black belt", "magic", 1)>>
+<<set _tmp = UInv.GetItemByType("Potions", "rainbow potion")>>

@@ -1,66 +1,63 @@
-/*
-    Item types:
-        weapon
-        armor
-        food
-        drink
-        crafting
-        misc
-*/
 
-window.GetItem = function(inventory){
-    console.log(inventory[0].name);
-    var element = inventory.filter(function(element){
-        return element.id > 1;
-    })
-    return element;
+
+// Attempts to add an item to player inventory. It won't let the player take more than they can carry. 
+window.GetItem = function(player, item, qty) {
+    var availableSpace = player.maxInventorySize - player.inventorySize;
+    var inventoryIndex;
+    var inInventory = false;
+
+    //Tests to see if item already exists in inventory
+    for(var i = 0; i < player.inventory.length; i++){
+        if(item.name == player.inventory[i].name){
+            console.log("Initial pass: Item exists.");
+            inventoryIndex = i;
+            inInventory = true;
+        }
+    }
+    //loop adds as much of item as will fit
+    for(var i = 0; i < qty; i++){
+        if(availableSpace >= 0 && (availableSpace - item.size >= 0)){
+            availableSpace -= item.size;
+            player.inventorySize += item.size;
+            if(inInventory){
+                console.log("Adding to qty of existing item.");
+                player.inventory[inventoryIndex].qty += 1;
+            } else {
+                console.log("Adding new item.");
+                player.inventory.push(item);
+                inInventory = true;
+                inventoryIndex = player.inventory.length - 1;
+            }
+        } else {
+            Dialog.setup('Alert');
+            Dialog.wiki(`Inventory full. Extra items have dropped.`);
+            Dialog.open();
+        }
+    }
+    item.qty = 1;
+    State.variables.player = player;
 }
 
-/*
-    Important JS functions:
-        find()
-        filter()
-*/
+//Deletes an item from the inventory
+window.DropItem = function(inventory, index){
+    inventory[index].qty -= 1;
+    console.log(`New quantity:${inventory[index].qty}`);
+    if(inventory[index].qty <= 0){
+        inventory.splice(index, 1);
+    }
+    return inventory;
+}
+
+//Used to show an item's description when examined.
+window.ShowDescription = function(inventory, index){
+    Dialog.setup('Item Description');
+    Dialog.wiki(`"${inventory[index].description}"\n\nDamage: ${inventory[index].damage}\nSize: ${inventory[index].size}`);
+    Dialog.open();
+}
 
 /* OOP programming:
     Encapsulation
     Abstraction
     Inheritance
     Polymorphism
-*/
-/*
-window.Item = function (config) {
-	// Set up our own data properties with some defaults.
-    this.id = '';
-    this.name    = '';
-    this.description = '';
-    this.type = '';
-
-	// Clone the given config object's own properties into our own properties.
-	//
-	// NOTE: We use the SugarCube built-in `clone()` function to make deep
-	// copies of each of the properties' values.
-	Object.keys(config).forEach(function (pn) {
-		this[pn] = clone(config[pn]);
-	}, this);
-};
-
-Item.prototype.clone = function () {
-	// Return a new instance containing our own data.
-	return new Item(this);
-};
-
-Item.prototype.toJSON = function () {
-	// Return a code string that will create a new instance containing our
-	// own data.
-	//
-	// NOTE: Supplying `this` directly as the `reviveData` parameter to the
-	// `JSON.reviveWrapper()` call will trigger out of control recursion in
-	// the serializer, so we must pass it a clone of our own data instead.
-	var ownData = {};
-	Object.keys(this).forEach(function (pn) {
-		ownData[pn] = clone(this[pn]);
-	}, this);
-	return JSON.reviveWrapper('new Item($ReviveData$)', ownData);
-};
 */

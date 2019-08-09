@@ -37,23 +37,13 @@ Will become outfits.
 <<exitMenu>>
 
 
-:: Bag
-<<set $menu = true>>\
-<<set $showFooter = false>>\
-You currently don't have a bag and can only carry so many things.
-
-Number of items: <<print $inventory.length>> / 3
-
-Test 1: <<set $test = GetItem($inventory)>>
-
-<<print $test.name>>
-
-<<exitMenu>>
-
-
 ::Skills
 <<set $menu = true>>\
 <<set $showFooter = false>>\
 Will become skills.
 
 <<exitMenu>>
+
+
+::testerdfgdfg
+<button id=<<print _i>> onclick="GetItem(this.id)">Equip</button>

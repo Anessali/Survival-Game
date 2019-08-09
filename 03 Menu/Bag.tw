@@ -1,0 +1,44 @@
+:: Bag
+<<set $menu = true>>\
+<<set $showFooter = false>>\
+<<set $player.inventorySize = 0>>\
+<<for _i = 0; _i < $player.inventory.length; _i++>><<nobr>>
+    <<set $player.inventorySize += $player.inventory[_i].size * $player.inventory[_i].qty>>
+<</nobr>><</for>>\
+Space in inventory: <<print $player.inventorySize>> / <<print $player.maxInventorySize>>
+<<nobr>><table class="container">
+	<tr>
+		<th>Name</th>
+		<th>Type</th>
+		<th>Qty</th>
+		<th>Inspect</th>
+		<th>Drop Item</th>
+	</tr>
+	<<for _i = 0; _i < $player.inventory.length; _i++>>
+        <<capture _i>>
+            <tr>
+                <td>
+                    <<print $player.inventory[_i].name>>
+                </td>
+                <td>
+                    <<print $player.inventory[_i].type>>
+                </td>
+                <td>
+                    <<print $player.inventory[_i].qty>>
+                </td>
+                <td>
+                    <<button "Inspect Item">>
+                        <<run ShowDescription($player.inventory, _i)>>
+                    <</button>>
+                </td>
+                <td>
+                    <<button "Drop">>
+                        <<run DropItem($player.inventory, _i)>>
+                        <<goto "Bag">>
+                    <</button>>
+                </td>
+            </tr>
+        <</capture>>
+	<</for>>
+</table><</nobr>>
+<<exitMenu>>

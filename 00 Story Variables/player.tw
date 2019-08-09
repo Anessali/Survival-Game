@@ -13,30 +13,38 @@
 	maxThirst: 100,
 	fatigue: 0,
 	maxFatigue: 100,
-	hat: {
+	head: {
 		name: "None",
 		description: "",
 		warmth: 0
 	},
-	mask:{
+	face:{
 		name: "None",
 		description: "",
 		warmth: 0
 	},
-	shirt : {
+	chest : {
 		name: "Cotton Shirt",
 		description: "A simple cotton shirt.",
 		warmth: 1
 	},
-	pants : {
+	legs : {
 		name: "Cloth Pants",
 		description: "A pair of cloth pants.",
 		warmth: 1
 	},
-	shoes : {
+	feet : {
 		name: "Worn Leather Boots",
 		description: "A pair of worn leather boots.",
 		warmth: 1
-	}
+	},
+    hip : {
+        name: "None",
+        size: 0
+    },
+    bag : {
+        name: "None",
+        size: 0
+    }
 }>>
 

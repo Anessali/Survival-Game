@@ -76,3 +76,11 @@ button:hover{
     background-color: #CC4C1F;
     border-color: #DF7500;
 }
+
+/*  Tables  */
+.container {
+    text-align: center;
+}
+.container, th, td{
+    border: 3px solid black;
+}

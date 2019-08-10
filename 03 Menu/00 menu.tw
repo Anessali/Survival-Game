@@ -29,14 +29,6 @@ Waterskin($waterSkin)
 <</link>>
 
 
-:: Outfit
-<<set $menu = true>>\
-<<set $showFooter = false>>\
-Will become outfits.
-
-<<exitMenu>>
-
-
 ::Skills
 <<set $menu = true>>\
 <<set $showFooter = false>>\

@@ -16,6 +16,10 @@ body {
     border-radius: 20px;
 }
 
+#story-title{
+    display: none;
+}
+
 .passage a{
   color: #EEDB74;
 }

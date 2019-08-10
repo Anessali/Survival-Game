@@ -9,26 +9,33 @@ Space in inventory: <<print $player.inventorySize>> / <<print $player.maxInvento
 <<nobr>><table class="container">
 	<tr>
 		<th>Name</th>
-		<th>Type</th>
 		<th>Qty</th>
-		<th>Inspect</th>
-		<th>Drop Item</th>
+		<th colspan="2">Actions</th>
 	</tr>
 	<<for _i = 0; _i < $player.inventory.length; _i++>>
         <<capture _i>>
             <tr>
                 <td>
-                    <<print $player.inventory[_i].name>>
-                </td>
-                <td>
-                    <<print $player.inventory[_i].type>>
+                    <<link $player.inventory[_i].name>> 
+                        /*  Placement refers to where object is placed on actor's body  */
+                        <<set _placement = $player.inventory[_i].placement>> 
+                        <<capture _placement>>
+                            <<if $player.outfit[_placement].name != "None">>
+                                
+                            <</if>>
+                            <<run GetItem($player, $player.outfit[_placement], 1)>>
+                            <<run EquipItem($player, $player.inventory[_i], _placement)>>
+                            <<run DropItem($player.inventory, _i)>>
+                            <<goto "Bag">>
+                        <</capture>>
+                    <</link>>
                 </td>
                 <td>
                     <<print $player.inventory[_i].qty>>
                 </td>
                 <td>
                     <<button "Inspect Item">>
-                        <<run ShowDescription($player.inventory, _i)>>
+                        <<run ShowDescription($player.inventory[_i])>>
                     <</button>>
                 </td>
                 <td>

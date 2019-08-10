@@ -1,15 +1,25 @@
 
+/** Notes
+ * 'Actor' refers to a character object. This mostly means the player, but can also include NPC's. I'm coding this in such a way that any character in the game can make use of these functions.
+ * 'Item' means the item object being passed.
+ * bodyPart refers to the part of the body where the item would be equipped.
+-------------------------------------------------------------------------------------*/
 
 // Attempts to add an item to player inventory. It won't let the player take more than they can carry. 
-window.GetItem = function(player, item, qty) {
-    var availableSpace = player.maxInventorySize - player.inventorySize;
+
+
+/**Reworking**
+ * item renamed to bodyPart
+ * Need to refactor code to search out items using bodyPart, instead of passing the exact item
+ */
+window.GetItem = function(actor, bodyPart, qty) {
+    var availableSpace = actor.maxInventorySize - actor.inventorySize;
     var inventoryIndex;
     var inInventory = false;
 
     //Tests to see if item already exists in inventory
-    for(var i = 0; i < player.inventory.length; i++){
-        if(item.name == player.inventory[i].name){
-            console.log("Initial pass: Item exists.");
+    for(var i = 0; i < actor.inventory.length; i++){
+        if(item.name == actor.inventory[i].name){
             inventoryIndex = i;
             inInventory = true;
         }
@@ -18,15 +28,13 @@ window.GetItem = function(player, item, qty) {
     for(var i = 0; i < qty; i++){
         if(availableSpace >= 0 && (availableSpace - item.size >= 0)){
             availableSpace -= item.size;
-            player.inventorySize += item.size;
+            actor.inventorySize += item.size;
             if(inInventory){
-                console.log("Adding to qty of existing item.");
-                player.inventory[inventoryIndex].qty += 1;
+                actor.inventory[inventoryIndex].qty += 1;
             } else {
-                console.log("Adding new item.");
-                player.inventory.push(item);
+                actor.inventory.push(item);
                 inInventory = true;
-                inventoryIndex = player.inventory.length - 1;
+                inventoryIndex = actor.inventory.length - 1;
             }
         } else {
             Dialog.setup('Alert');
@@ -35,26 +43,61 @@ window.GetItem = function(player, item, qty) {
         }
     }
     item.qty = 1;
-    State.variables.player = player;
+    return actor;
 }
 
 //Deletes an item from the inventory
 window.DropItem = function(inventory, index){
     inventory[index].qty -= 1;
-    console.log(`New quantity:${inventory[index].qty}`);
     if(inventory[index].qty <= 0){
         inventory.splice(index, 1);
     }
     return inventory;
 }
 
+//Equips an item. Uses placement to link up with bodyPart.
+window.EquipItem = function(actor, item, bodyPart){
+    if(bodyPart == "weapon"){
+        console.log("EquipItem bodyPart is 'weapon'");
+        actor.weapon = item;
+    } else {
+        actor.outfit[bodyPart] = item;
+    }
+    return actor;
+}
+
 //Used to show an item's description when examined.
-window.ShowDescription = function(inventory, index){
+window.ShowDescription = function(item){
     Dialog.setup('Item Description');
-    Dialog.wiki(`"${inventory[index].description}"\n\nDamage: ${inventory[index].damage}\nSize: ${inventory[index].size}`);
+    if(item.damage != null){
+        Dialog.wiki(`"${item.description}"\n\nDamage: ${item.damage}\nSize: ${item.size}`);
+    } else if(item.damage == null && item.warmth != null) {
+        Dialog.wiki(`"${item.description}"\n\nWarmth: ${item.warmth}\nSize: ${item.size}`);
+    } else {
+        Dialog.wiki(`"${item.description}"\n\nSize: ${item.size}`);
+    }
+    
     Dialog.open();
 }
 
+//Generates a table of an actor's worn outfit *~* WIP *~*
+window.GetOutfit = function(actor){
+    var table = ``;
+    var items = Object.values(actor.outfit);
+    table +=   `<table class="container">
+                <tr>
+                    <th colspan="5">Armor</th>
+                </tr>
+                <tr>
+                    <th>Body Part</th>
+                    <th>Name</th>
+                    <th>Warmth Rating</th>
+                    <th colspan="2">Actions</th>
+                </tr>`;
+    console.log(items.length);
+    table += `</table>`;
+    return table;
+}
 /* OOP programming:
     Encapsulation
     Abstraction

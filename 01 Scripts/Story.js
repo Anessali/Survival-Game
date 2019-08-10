@@ -10,3 +10,15 @@ $(document).on(':passageend', function () {
         $chosen.prop('selected', true);
     });
 });
+
+$(document).on(':passageend', function () {
+    $('.hair').on('change', function () {
+        State.variables.player.hair.color = $(this).val();
+    });
+});
+
+$(document).on(':passageend', function () {
+    $('.eyes').on('change', function () {
+        State.variables.player.eyes.color = $(this).val();
+    });
+});

@@ -1,11 +1,23 @@
 
 ::Start
-<<set $menu = false>>\
-Who are you?
+<<nobr>>
+    <<set $menu = false>>
+<</nobr>>\
+For as long as you can remember, you've searched for answers. In your travels plenty have asked for your name or where you came from, but these are all things you wonder yourself. Perhaps that's why you've come to think of yourself simply as a person without a name, a <<print $player.name>>.
 
-Name: <<textbox "$player.name" "Wanderer">>
+Despite this, [[there are some things which are obvious.|Start2]]
 
-<<radiobutton "$player.gender" "male" checked>> Male <<radiobutton "$player.gender" "female">> Female
+::Start2
+<<set _hairArray = ["red", "brown", "black", "blonde"]>>\
+<<set _eyeArray = ["blue", "green", "brown", "hazel"]>>\
+Are you a man or a woman?
+<<radiobutton "$player.gender" "male" checked>> Male <<radiobutton "$player.gender" "female">> Female <<radiobutton "$player.gender" "neither">> I don't know
+
+What color is your hair?
+<<print HtmlSelect("hair", _hairArray)>>
+
+What color are your eyes?
+<<print HtmlSelect("eyes", _eyeArray)>>
 
 [[Continue|StartingArea][$showFooter = true]]
 

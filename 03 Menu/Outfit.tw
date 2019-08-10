@@ -1,0 +1,29 @@
+:: Outfit
+<<set $menu = true>>\
+<<set $showFooter = false>>\
+\
+<<nobr>><table class="container">
+    <tr>
+        <th colspan="4">Weapon</th>
+    </tr>
+	<tr>
+		<th>Name</th>
+		<th>Damage</th>
+		<th colspan="2">Actions</th>
+	</tr>
+    <tr>
+        <td>
+            <<link $player.weapon.name>>
+                <<run GetItem($player, $player.weapon, 1)>>
+                <<set $player.weapon = $items.noweapon>>
+                <<goto "Outfit">>
+            <</link>>
+        </td>
+        <td><<print $player.weapon.damage>></td>
+        <td><<button "Inspect Item">><<run ShowDescription($player.weapon)>><</button>></td>
+        <td><<button "Drop">><<run DropItem($player)>><<goto "Bag">><</button>></td>
+    </tr>
+</table><</nobr>>
+<<print GetOutfit($player)>>
+
+<<exitMenu>>

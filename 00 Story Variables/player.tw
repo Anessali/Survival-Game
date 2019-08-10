@@ -2,8 +2,16 @@
 <<set $player = {
 	name : "Wanderer",
 	lastName : "",
-	gender: "male",
-	race: "human",
+	gender : "male",
+	race : "human",
+    hair : {
+        color: "red",
+        style: "messy",
+        length: "medium"
+    },
+    eyes : {
+        color: "blue"
+    },
 	age : 17,
 	hp : 20,
 	maxHp : 20,
@@ -13,37 +21,57 @@
 	maxThirst: 100,
 	fatigue: 0,
 	maxFatigue: 100,
-	head: {
-		name: "None",
-		description: "",
-		warmth: 0
-	},
-	face:{
-		name: "None",
-		description: "",
-		warmth: 0
-	},
-	chest : {
-		name: "Cotton Shirt",
-		description: "A simple cotton shirt.",
-		warmth: 1
-	},
-	legs : {
-		name: "Cloth Pants",
-		description: "A pair of cloth pants.",
-		warmth: 1
-	},
-	feet : {
-		name: "Worn Leather Boots",
-		description: "A pair of worn leather boots.",
-		warmth: 1
-	},
-    hip : {
-        name: "None",
-        size: 0
+    outfit : {
+        head : {
+            name: "None",
+            description: "I don't know what you're looking for. There's nothing here.",
+            defense: 0,
+            warmth: 0,
+            size: 0
+        },
+        face : {
+            name: "None",
+            description: "I don't know what you're looking for. There's nothing here.",
+            defense: 0,
+            warmth: 0,
+            size: 0
+        },
+        chest : {
+            name: "Cotton Shirt",
+            description: "A simple cotton shirt.",
+            placement: "chest",
+            defense: 0,
+            warmth: 1,
+            size: 0
+        },
+        legs : {
+            name: "Cloth Pants",
+            description: "A pair of cloth pants.",
+            placement: "legs",
+            defense: 0,
+            warmth: 1,
+            size: 0
+        },
+        feet : {
+            name: "Worn Leather Boots",
+            description: "A pair of worn leather boots.",
+            placement: "feet",
+            defense: 0,
+            warmth: 1,
+            size: 0
+        },
+        back : {
+            name: "None",
+            description: "I don't know what you're looking for. There's nothing here.",
+            defense: 0,
+            warmth: 0,
+            size: 0
+        }
     },
-    bag : {
+    weapon : {
         name: "None",
+        description: "I don't know what you're looking for. There's nothing here.",
+        damage: 0,
         size: 0
     }
 }>>

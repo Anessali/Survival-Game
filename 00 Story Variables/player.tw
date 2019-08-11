@@ -21,6 +21,8 @@
 	maxThirst: 100,
 	fatigue: 0,
 	maxFatigue: 100,
+    eatText : "",
+    drinkText : "",
     outfit : {
         head : {
             name: "None",
@@ -44,37 +46,38 @@
             size: 0
         },
         chest : {
-            name: "Cotton Shirt",
-            description: "A simple cotton shirt.",
-            placement: "chest",
+            name: "None",
+            description: "I don't know what you're looking for. There's nothing here.",
             defense: 0,
-            warmth: 1,
-            size: 2
+            warmth: 0,
+            size: 0
         },
         legs : {
-            name: "Cloth Pants",
-            description: "A pair of cloth pants.",
-            placement: "legs",
+            name: "None",
+            description: "I don't know what you're looking for. There's nothing here.",
             defense: 0,
-            warmth: 1,
-            size: 2
+            warmth: 0,
+            size: 0
         },
         feet : {
-            name: "Worn Leather Boots",
-            description: "A pair of worn leather boots.",
-            placement: "feet",
+            name: "None",
+            description: "I don't know what you're looking for. There's nothing here.",
             defense: 0,
-            warmth: 1,
-            size: 3
+            warmth: 0,
+            size: 0
         }
     },
     weapon : {
         name: "Old Sword",
-        description: `This was probably a deadly weapon once, but its blade is now dull and covered in rust. The finish has worn off its case and its wood has cracked, but it holds for now. You can just make out the engraving of an eye hidden beneath the rust.`,
+        description: "This was probably a deadly weapon once, but its blade is now dull and covered in rust. The finish has worn off its case and its wood has cracked, but it holds for now. You can just make out the engraving of an eye hidden beneath the rust.",
         placement : "weapon",
         damage: 4,
         size: 3,
-        qty : 1
+        qty : 1,
+        eat : "",
+        attack : function() {
+            return "You swing the sword";
+        }
     }
 }>>
 

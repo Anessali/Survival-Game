@@ -58,3 +58,6 @@
 				"ForestRiver1"
 		]
 }>>
+
+//Text for eating and drinking
+<<set $eatText = "">>\

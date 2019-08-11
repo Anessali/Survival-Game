@@ -20,3 +20,5 @@
 \
 <<if $anaris>><<set $randomEvent = random(30)>><</if>>\
 <<if $forest>><</if>>\
+<div class="food"><<print $player.eatText>></div>\
+<<set $player.eatText = "">>\

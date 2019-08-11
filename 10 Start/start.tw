@@ -2,16 +2,20 @@
 ::Start
 <<nobr>>
     <<set $menu = false>>
+    <<set $player.weapon = $items.sword001>>
+    <<set $player.outfit.chest = $items.cottonShirt01>>
+    <<set $player.outfit.legs = $items.clothPants01>>
+    <<set $player.outfit.feet = $items.leatherBoots01>>
 <</nobr>>\
 For as long as you can remember, you've searched for answers. In your travels plenty have asked for your name or where you came from, but these are all things you wonder yourself. Perhaps that's why you've come to think of yourself simply as a person without a name, a <<print $player.name>>.
 
-Despite this, [[there are some things which are obvious.|Start2]]
+Despite this, [[there are some things which are obvious.|WandererStart2]]
 
-::Start2
+::WandererStart2
 <<set _hairArray = ["red", "brown", "black", "blonde"]>>\
 <<set _eyeArray = ["blue", "green", "brown", "hazel"]>>\
 Are you a man or a woman?
-<<radiobutton "$player.gender" "male" checked>> Male <<radiobutton "$player.gender" "female">> Female <<radiobutton "$player.gender" "neither">> I don't know
+<<radiobutton "$player.gender" "male" checked>> Male <<radiobutton "$player.gender" "female">> Female
 
 What color is your hair?
 <<print HtmlSelect("hair", _hairArray)>>
@@ -26,5 +30,6 @@ What color are your eyes?
 ::StartingArea
 You're in a forest clearing.
 
+<<link "Pick up a branch" "StartingArea">><<run GetItem($player, $items.branch, 1)>><</link>>
 <<link "Pick up a rock" "StartingArea">><<run GetItem($player, $items.rock, 1)>><</link>>
-<<link "Pick up three rocks" "StartingArea">><<run GetItem($player, $items.rock, 3)>><</link>>
+<<link "Pick up a mushroom" "StartingArea">><<run GetItem($player, $items.mushroom01, 1)>><</link>>

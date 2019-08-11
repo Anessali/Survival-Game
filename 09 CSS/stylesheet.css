@@ -91,3 +91,8 @@ button:hover{
 .capitalize {
     text-transform: capitalize;
 }
+
+/*  Text Decoration  */
+.food {
+    color: #ff8533;
+}

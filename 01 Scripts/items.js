@@ -4,11 +4,12 @@
  * 'Item' means the item object being passed.
 */
 
-// Attempts to add an item to player inventory. It won't let the player take more than they can carry. 
+// Attempts to add an item to actor inventory.
 window.GetItem = function(actor, item, qty) {
     var availableSpace = actor.maxInventorySize - actor.inventorySize;
     var inventoryIndex;
     var inInventory = false;
+    item.qty = 1;
     
     //None is a placeholder item referring to parts of the body with nothing on it. Should not appear in inventory.
     if(item.name == "None"){
@@ -35,12 +36,11 @@ window.GetItem = function(actor, item, qty) {
                 }
             } else {
                 Dialog.setup('Alert');
-                Dialog.wiki(`Inventory full. Extra items have dropped.`);
+                Dialog.wiki(`Inventory full. Extra items have been dropped.`);
                 Dialog.open();
             }
         }
     }
-    item.qty = 1;
     return actor;
 }
 
@@ -89,6 +89,11 @@ window.ShowDescription = function(item){
     }
     
     Dialog.open();
+}
+
+//Actor attempts to eat the item. Not everything is edible.
+window.EatItem = function(actor, item, isEquipped){
+    
 }
 
 //Used to set an armor piece to "None", the placeholder meaning no item equipped

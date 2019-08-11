@@ -10,7 +10,7 @@ Space in inventory: <<print $player.inventorySize>> / <<print $player.maxInvento
 	<tr>
 		<th>Name</th>
 		<th>Qty</th>
-		<th colspan="2">Actions</th>
+		<th colspan="3">Actions</th>
 	</tr>
 	<<for _i = 0; _i < $player.inventory.length; _i++>>
         <<set _placement = $player.inventory[_i].placement>> 
@@ -31,6 +31,12 @@ Space in inventory: <<print $player.inventorySize>> / <<print $player.maxInvento
                 </td>
                 <td>
                     <<print $player.inventory[_i].qty>>
+                </td>
+                <td>
+                    <<button "Eat">>
+                        <<run $player.inventory[_i].eat($player, $player.inventory[_i], false)>>
+                        <<goto "Bag">>
+                    <</button>>
                 </td>
                 <td>
                     <<button "Inspect Item">>

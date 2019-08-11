@@ -13,21 +13,20 @@ Space in inventory: <<print $player.inventorySize>> / <<print $player.maxInvento
 		<th colspan="2">Actions</th>
 	</tr>
 	<<for _i = 0; _i < $player.inventory.length; _i++>>
-        <<capture _i>>
+        <<set _placement = $player.inventory[_i].placement>> 
+        <<capture _placement _i>>
             <tr>
                 <td>
                     <<link $player.inventory[_i].name>> 
                         /*  Placement refers to where object is placed on actor's body  */
-                        <<set _placement = $player.inventory[_i].placement>> 
-                        <<capture _placement>>
-                            <<if $player.outfit[_placement].name != "None">>
-                                
-                            <</if>>
-                            <<run GetItem($player, $player.outfit[_placement], 1)>>
-                            <<run EquipItem($player, $player.inventory[_i], _placement)>>
-                            <<run DropItem($player.inventory, _i)>>
-                            <<goto "Bag">>
-                        <</capture>>
+                        <<if _placement == "weapon">>
+                            <<set $player = GetItem($player, $player.weapon, 1)>>
+                        <<else>>
+                            <<set $player = GetItem($player, $player.outfit[_placement], 1)>>
+                        <</if>>
+                        <<run EquipItem($player, $player.inventory[_i], _placement)>>
+                        <<run DropItem($player, $player.inventory[_i], false)>>
+                        <<goto "Bag">>
                     <</link>>
                 </td>
                 <td>
@@ -40,7 +39,7 @@ Space in inventory: <<print $player.inventorySize>> / <<print $player.maxInvento
                 </td>
                 <td>
                     <<button "Drop">>
-                        <<run DropItem($player.inventory, _i)>>
+                        <<run DropItem($player, $player.inventory[_i], false)>>
                         <<goto "Bag">>
                     <</button>>
                 </td>

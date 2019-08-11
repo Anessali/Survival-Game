@@ -88,3 +88,6 @@ button:hover{
 .container, th, td{
     border: 3px solid black;
 }
+.capitalize {
+    text-transform: capitalize;
+}

@@ -2,63 +2,74 @@
 /** Notes
  * 'Actor' refers to a character object. This mostly means the player, but can also include NPC's. I'm coding this in such a way that any character in the game can make use of these functions.
  * 'Item' means the item object being passed.
- * bodyPart refers to the part of the body where the item would be equipped.
--------------------------------------------------------------------------------------*/
+*/
 
 // Attempts to add an item to player inventory. It won't let the player take more than they can carry. 
-
-
-/**Reworking**
- * item renamed to bodyPart
- * Need to refactor code to search out items using bodyPart, instead of passing the exact item
- */
-window.GetItem = function(actor, bodyPart, qty) {
+window.GetItem = function(actor, item, qty) {
     var availableSpace = actor.maxInventorySize - actor.inventorySize;
     var inventoryIndex;
     var inInventory = false;
-
-    //Tests to see if item already exists in inventory
-    for(var i = 0; i < actor.inventory.length; i++){
-        if(item.name == actor.inventory[i].name){
-            inventoryIndex = i;
-            inInventory = true;
-        }
-    }
-    //loop adds as much of item as will fit
-    for(var i = 0; i < qty; i++){
-        if(availableSpace >= 0 && (availableSpace - item.size >= 0)){
-            availableSpace -= item.size;
-            actor.inventorySize += item.size;
-            if(inInventory){
-                actor.inventory[inventoryIndex].qty += 1;
-            } else {
-                actor.inventory.push(item);
+    
+    //None is a placeholder item referring to parts of the body with nothing on it. Should not appear in inventory.
+    if(item.name == "None"){
+        //Purposely empty if
+    } else {
+        //Tests to see if item already exists in inventory
+        for(var i = 0; i < actor.inventory.length; i++){
+            if(item.name == actor.inventory[i].name){
+                inventoryIndex = i;
                 inInventory = true;
-                inventoryIndex = actor.inventory.length - 1;
             }
-        } else {
-            Dialog.setup('Alert');
-            Dialog.wiki(`Inventory full. Extra items have dropped.`);
-            Dialog.open();
+        }
+        //loop adds as much of item as will fit
+        for(var i = 0; i < qty; i++){
+            if(availableSpace >= 0 && (availableSpace - item.size >= 0)){
+                availableSpace -= item.size;
+                actor.inventorySize += item.size;
+                if(inInventory){
+                    actor.inventory[inventoryIndex].qty += 1;
+                } else {
+                    actor.inventory.push(item);
+                    inInventory = true;
+                    inventoryIndex = actor.inventory.length - 1;
+                }
+            } else {
+                Dialog.setup('Alert');
+                Dialog.wiki(`Inventory full. Extra items have dropped.`);
+                Dialog.open();
+            }
         }
     }
     item.qty = 1;
     return actor;
 }
 
-//Deletes an item from the inventory
-window.DropItem = function(inventory, index){
-    inventory[index].qty -= 1;
-    if(inventory[index].qty <= 0){
-        inventory.splice(index, 1);
+//Deletes an item from the inventory. isEquipped is a boolean referring to whether an item is equipped or in inventory.
+window.DropItem = function(actor, item, isEquipped){
+    if(isEquipped){
+        if(item.name == "None"){
+            //Purposely blank if - nothing should happen
+        } else if(item.placement == "weapon") {
+            actor.weapon = State.variables.items.noweapon;
+        } else {
+            actor.outfit[item.placement] = State.variables.items.noarmor;
+        }
+    } else {
+        for(var i = 0; i < actor.inventory.length; i++){
+            if(actor.inventory[i].name == item.name){
+                actor.inventory[i].qty -= 1;
+                if(actor.inventory[i].qty <= 0){
+                    actor.inventory.splice(i, 1);
+                }
+            }
+        }
     }
-    return inventory;
+    return actor;
 }
 
 //Equips an item. Uses placement to link up with bodyPart.
 window.EquipItem = function(actor, item, bodyPart){
     if(bodyPart == "weapon"){
-        console.log("EquipItem bodyPart is 'weapon'");
         actor.weapon = item;
     } else {
         actor.outfit[bodyPart] = item;
@@ -80,27 +91,14 @@ window.ShowDescription = function(item){
     Dialog.open();
 }
 
-//Generates a table of an actor's worn outfit *~* WIP *~*
-window.GetOutfit = function(actor){
-    var table = ``;
+//Used to set an armor piece to "None", the placeholder meaning no item equipped
+window.SetNoArmor = function(actor, item){
     var items = Object.values(actor.outfit);
-    table +=   `<table class="container">
-                <tr>
-                    <th colspan="5">Armor</th>
-                </tr>
-                <tr>
-                    <th>Body Part</th>
-                    <th>Name</th>
-                    <th>Warmth Rating</th>
-                    <th colspan="2">Actions</th>
-                </tr>`;
-    console.log(items.length);
-    table += `</table>`;
-    return table;
+    var placement = item.placement;
+    for(var i = 0; i < items.length; i++){
+        if(items[i].name == item.name){
+            actor.outfit[placement] = State.variables.items.noarmor;
+        }
+    }
+    return actor;
 }
-/* OOP programming:
-    Encapsulation
-    Abstraction
-    Inheritance
-    Polymorphism
-*/

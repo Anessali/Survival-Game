@@ -24,7 +24,7 @@ What color are your eyes?
 
 
 ::StartingArea
-You're in a forest clearing. You can see an <<link $items.sword001.name "StartingArea">><<run GetItem($player, $items.sword001, 1)>><</link>> lying nearby.
+You're in a forest clearing.
 
 <<link "Pick up a rock" "StartingArea">><<run GetItem($player, $items.rock, 1)>><</link>>
 <<link "Pick up three rocks" "StartingArea">><<run GetItem($player, $items.rock, 3)>><</link>>

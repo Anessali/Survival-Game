@@ -19,11 +19,62 @@
                 <<goto "Outfit">>
             <</link>>
         </td>
-        <td><<print $player.weapon.damage>></td>
-        <td><<button "Inspect Item">><<run ShowDescription($player.weapon)>><</button>></td>
-        <td><<button "Drop">><<run DropItem($player)>><<goto "Bag">><</button>></td>
+        <td>
+            <<print $player.weapon.damage>>
+        </td>
+        <td>
+            <<button "Inspect Item">>
+                <<run ShowDescription($player.weapon)>>
+            <</button>>
+        </td>
+        <td>
+            <<button "Drop">>
+                <<run DropItem($player, $player.weapon, true)>>
+                <<goto "Outfit">>
+            <</button>>
+        </td>
     </tr>
 </table><</nobr>>
-<<print GetOutfit($player)>>
+<<nobr>><table class="container">
+    <tr>
+        <th colspan="5">Armor</th>
+    </tr>
+	<tr>
+		<th>Body Part</th>
+		<th>Name</th>
+		<th>Warmth Rating</th>
+		<th colspan="2">Actions</th>
+	</tr>
+    <<set _outfitObjects = Object.values($player.outfit)>>
+    <<set _objectKeys = Object.keys($player.outfit)>>
+    <<for _i = 0; _i < _outfitObjects.length; _i++>>
+        <<capture _outfitObjects _objectKeys _i>>
+            <tr>
+                <td class="capitalize"><<print _objectKeys[_i]>></td>
+                <td>
+                    <<link _outfitObjects[_i].name>>
+                        <<run GetItem($player, _outfitObjects[_i], 1)>>
+                        <<run SetNoArmor($player, _outfitObjects[_i])>>
+                        <<goto "Outfit">>
+                    <</link>>
+                </td>
+                <td>
+                    <<print _outfitObjects[_i].warmth>>
+                </td>
+                <td>
+                    <<button "Inspect Item">>
+                        <<run ShowDescription(_outfitObjects[_i])>>
+                    <</button>>
+                </td>
+                <td>
+                    <<button "Drop">>
+                        <<run DropItem($player, _outfitObjects[_i], true)>>
+                        <<goto "Outfit">>
+                    <</button>>
+                </td>
+            </tr>
+        <</capture>>
+    <</for>>
+</table><</nobr>>\
 
 <<exitMenu>>

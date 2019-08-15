@@ -2,6 +2,7 @@ This is a text-based survival game that currently doesn't have a name. This is a
 
 ## Passage of Time - Complete
 The passage of time is the very first thing I completed.
+
 [x] Time passes
 [x] Clock displays in-game time
 [x] Day and night cycles

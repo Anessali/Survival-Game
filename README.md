@@ -3,10 +3,10 @@ This is a text-based survival game that currently doesn't have a name. This is a
 ## Passage of Time - Complete
 The passage of time is the very first thing I completed.
 
-[x] Time passes
-[x] Clock displays in-game time
-[x] Day and night cycles
-[x] Days of the week
+[*] Time passes
+[*] Clock displays in-game time
+[*] Day and night cycles
+[*] Days of the week
 
 *Note: Currently only a 24 hour clock is available and I don't have plans to add a 12-hour clock. I may add one later.
 

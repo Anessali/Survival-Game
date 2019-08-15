@@ -1,0 +1,17 @@
+::Biomes
+<!-- Location Links -->
+<<set $location = {
+    area: {},
+    outside: false
+}>>
+<<set $lostForest = {
+    name: "The Lost Forest",
+    links: [
+        "Lost-Forest01",
+        "ForestRiver1"
+    ],
+    food : [$items.food.mushroom],
+    items : [$items.items.rock, $items.items.branch],
+    camp : ""
+}>>
+

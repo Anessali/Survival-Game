@@ -23,61 +23,19 @@
 	maxFatigue: 100,
     eatText : "",
     drinkText : "",
-    outfit : {
-        head : {
-            name: "None",
-            description: "I don't know what you're looking for. There's nothing here.",
-            defense: 0,
-            warmth: 0,
-            size: 0
-        },
-        face : {
-            name: "None",
-            description: "I don't know what you're looking for. There's nothing here.",
-            defense: 0,
-            warmth: 0,
-            size: 0
-        },
-        back : {
-            name: "None",
-            description: "I don't know what you're looking for. There's nothing here.",
-            defense: 0,
-            warmth: 0,
-            size: 0
-        },
-        chest : {
-            name: "None",
-            description: "I don't know what you're looking for. There's nothing here.",
-            defense: 0,
-            warmth: 0,
-            size: 0
-        },
-        legs : {
-            name: "None",
-            description: "I don't know what you're looking for. There's nothing here.",
-            defense: 0,
-            warmth: 0,
-            size: 0
-        },
-        feet : {
-            name: "None",
-            description: "I don't know what you're looking for. There's nothing here.",
-            defense: 0,
-            warmth: 0,
-            size: 0
-        }
-    },
-    weapon : {
-        name: "Old Sword",
-        description: "This was probably a deadly weapon once, but its blade is now dull and covered in rust. The finish has worn off its case and its wood has cracked, but it holds for now. You can just make out the engraving of an eye hidden beneath the rust.",
-        placement : "weapon",
-        damage: 4,
-        size: 3,
-        qty : 1,
-        eat : "",
-        attack : function() {
-            return "You swing the sword";
-        }
-    }
+    inventory : [],
+    inventorySize : 0,
+    maxInventorySize : 10,
+    weapon : {},
+    outfit : { head : {}, face : {}, back : {}, chest : {}, legs : {}, feet : {} }
 }>>
+
+/*  Sets the player's default(naked) outfit  */
+<<set $player.weapon = $items.weapons.noweapon>>
+<<set $player.outfit.head = $items.armor.noarmor>>
+<<set $player.outfit.face = $items.armor.noarmor>>
+<<set $player.outfit.back = $items.armor.noarmor>>
+<<set $player.outfit.chest = $items.armor.noarmor>>
+<<set $player.outfit.legs = $items.armor.noarmor>>
+<<set $player.outfit.feet = $items.armor.noarmor>>
 

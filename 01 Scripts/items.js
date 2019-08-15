@@ -102,7 +102,7 @@ window.SetNoArmor = function(actor, item){
     var placement = item.placement;
     for(var i = 0; i < items.length; i++){
         if(items[i].name == item.name){
-            actor.outfit[placement] = State.variables.items.noarmor;
+            actor.outfit[placement] = State.variables.items.armor.noarmor;
         }
     }
     return actor;

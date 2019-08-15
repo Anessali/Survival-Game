@@ -9,7 +9,7 @@
 
 
 <<widget "explore">><<nobr>>
-    <<set _explore = explore($biome, $area, $location)>>
+    <<set _explore = explore($location)>>
     <<link "Explore" _explore>>
         <<set $hours += 1>>
     <</link>>

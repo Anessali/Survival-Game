@@ -9,13 +9,13 @@
 */
 
 function Weapons(){
-    State.variables.items.noweapon = {
+    State.variables.items.weapons.noweapon = {
         name: "None",
         description: "I don't know what you're looking for. There's nothing here.",
         damage: 0,
         size: 0
     },
-    State.variables.items.sword001 = {
+    State.variables.items.weapons.sword001 = {
         name: "Old Sword",
         description: `This was probably a deadly weapon once, but its blade is now dull and covered in rust. The finish has worn off its case and its wood has cracked, but it holds for now. You can just make out the engraving of an eye hidden beneath the rust.`,
         placement : "weapon",
@@ -34,14 +34,14 @@ function Weapons(){
 }
 
 function Armor() {
-    State.variables.items.noarmor = {
+    State.variables.items.armor.noarmor = {
         name: "None",
         description: "I don't know what you're looking for. There's nothing here.",
         defense: 0,
         warmth: 0,
         size: 0
     },
-    State.variables.items.cottonShirt01 = {
+    State.variables.items.armor.cottonShirt01 = {
         name: "Cotton Shirt",
         description: "A simple cotton shirt.",
         placement: "chest",
@@ -53,7 +53,7 @@ function Armor() {
         warmth: 1,
         size: 2
     },
-    State.variables.items.clothPants01 = {
+    State.variables.items.armor.clothPants01 = {
         name: "Cloth Pants",
         description: "A pair of cloth pants.",
         placement: "legs",
@@ -65,7 +65,7 @@ function Armor() {
         warmth: 1,
         size: 2
     },
-    State.variables.items.leatherBoots01 = {
+    State.variables.items.armor.leatherBoots01 = {
         name: "Worn Leather Boots",
         description: "A pair of worn leather boots.",
         placement: "feet",
@@ -82,7 +82,7 @@ function Armor() {
 }
 
 function Food() {
-    State.variables.items.mushroom01 = {
+    State.variables.items.food.mushroom01 = {
         name: "Mushroom",
         description: "Maybe it's safe to eat?",
         eat : function(actor, item, isEquipped){
@@ -103,7 +103,7 @@ function Misc() {
 }
 
 function Crafting(){
-    State.variables.items.rock = {
+    State.variables.items.items.rock = {
         name : "Rock",
         description: "It's a rock. Perfect for throwing.",
         placement : "weapon",
@@ -116,7 +116,7 @@ function Crafting(){
         size: 1,
         qty : 1
     },
-    State.variables.items.branch = {
+    State.variables.items.items.branch = {
         name : "Branch",
         description: "It's a tree branch.",
         placement : "weapon",
@@ -137,4 +137,5 @@ window.AddStaticItems = function(){
     Crafting();
     Food();
     Misc();
+    console.log(State.variables.items);
 }

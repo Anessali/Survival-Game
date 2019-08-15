@@ -45,19 +45,8 @@
 <<set $waterSkin = 3>>
 
 <<set $sleeping = false>>
-<<set $biome = "forest">>
-<<set $area = "outside">>
 <<set $camp = false>>
 <<set $waterSoruce = false>>
-
-
-<!-- Location Links -->
-<<set $location = {
-		forest : [
-				"StartingArea",
-				"ForestRiver1"
-		]
-}>>
 
 //Text for eating and drinking
 <<set $eatText = "">>\

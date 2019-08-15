@@ -1,8 +1,11 @@
 
-::Inventory
-<<set $items = {}>>
-<<set $player.inventory = []>>
-<<set $player.inventorySize = 0>>
-<<set $player.maxInventorySize = 10>>
+::Items
+<<set $items = {
+    weapons : {},
+    armor : {},
+    food : {},
+    drinks : {},
+    items : {}
+}>>
 
 <<run AddStaticItems()>>

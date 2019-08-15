@@ -1,3 +1,4 @@
+
 //Controls passage of time
 window.changeTime = function(time){
     if (time.minutes >= 60) {
@@ -16,6 +17,7 @@ window.changeTime = function(time){
 
     return time;
 }
+
 //Function is used to display time
 window.clockDisplay = function(hours, minutes) {
     if(minutes < 10){
@@ -23,6 +25,7 @@ window.clockDisplay = function(hours, minutes) {
     }
     return hours + ':' + minutes;
 }
+
 //sets the time of day - morning, evening, etc
 window.getTimeOfDay = function(hours){
     // hours = time[0];

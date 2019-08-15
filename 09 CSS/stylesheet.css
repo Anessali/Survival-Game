@@ -1,18 +1,21 @@
+/* twine-user-stylesheet #1: "stylesheet.css" */
 /*:: Story Stylesheet [stylesheet]*/
+/*  Variables  */
+:root {
+    --main-color: #482714;
+    --border-color: black;
+}
+
 body {
-  background-color: black;
-  /* background: url(http://tjliggett.com/Games/images/simon-matzinger-380457.jpg) no-repeat; */
-  /* background: url(http://www.resilience.org/wp-content/uploads/2017/11/simon-matzinger-380457.jpg); */
-  background: url("Images/simon-matzinger-380457.jpg");
   background-size: cover;
 }
 
 #passages {
 	  font-size: 20px;
   	text-indent: 40px each-line;
-    background-color: #482714;
+    background-color: var(--main-color);
     padding: 10px;
-    border: 5px solid black;
+    border: 5px solid var(--border-color);
     border-radius: 20px;
 }
 
@@ -32,8 +35,8 @@ body {
 /* menu */
 
 #ui-bar{
-    background-color: #482714;
-    border-right: 5px solid black;
+    background-color: var(--main-color);
+    border-right: 5px solid var(--border-color);
 }
 
 #ui-bar h1, h2, h3, h4, h5{
@@ -58,12 +61,12 @@ body {
 }
 /* Save Dialog */
 #ui-dialog-titlebar{
-    background-color: #482714;
+    background-color: var(--main-color);
     border-bottom: 3px solid white;
 }
 
 #ui-dialog-body{
-    background-color: #482714;
+    background-color: var(--main-color);
 }
 
 button {
@@ -81,12 +84,34 @@ button:hover{
     border-color: #DF7500;
 }
 
+/*  Footer  */
+#footer {
+    position: absolute;
+    text-align: center;
+    bottom: 0px;
+    background-color: var(--main-color);
+    border-top: 5px solid var(--border-color);
+    padding-bottom: 20px;
+    width: 100%;
+    left: 0px;
+    padding-top: 20px;
+}
+
+#footerText {
+    display: inline-block;
+    width: 300px;
+}
+
+#passages button {
+    width: 100%;
+}
+
 /*  Tables  */
 .container {
     text-align: center;
 }
 .container, th, td{
-    border: 3px solid black;
+    border: 3px solid var(--border-color);
 }
 .capitalize {
     text-transform: capitalize;

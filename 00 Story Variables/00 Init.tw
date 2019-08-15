@@ -7,7 +7,6 @@ Survival Game
 
 :: StoryInit
 <<include "StoryVariables">>
+<<include "Items">>
+<<include "Biomes">>
 <<include "PlayerStats">>
-<<include "MonsterStats">>
-<<include "PlayerSkills">>
-<<include "Inventory">>

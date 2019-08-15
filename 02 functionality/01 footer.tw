@@ -1,6 +1,6 @@
 :: PassageFooter
-<<if $showFooter>>\
-    <br>
+<<if $showFooter>>
+
     <<explore>>
     <<link "Forage" "Forage">>
         <<set $passageName = passage()>>
@@ -10,19 +10,21 @@
         <<set $showFooter = false>>
         <<set $passageName = passage()>>
     <</link>>
+    <<link "Make Camp" "Sleep">>
+        <<set $showFooter = false>>
+        <<set $passageName = passage()>>
+    <</link>>
 <</if>>\
 
 
 :: Sleep
-<<set $hours += 8>>\
-<<set $sleeping = true>>\
-<<set $player.fatigue -= 25 * $hours>>\
-<<if $player.fatigue < 0>><<set $player.fatigue = 0>><</if>>\
-<<if $camp>>\
-    Crawling into your tent, you settle down for the night.
-<<elseif $biome == "forest">>\
-    Building a makeshift bed out of leaves, you settle down for the night.
-<</if>>\
+<<nobr>>
+    <<set $hours += 8>>
+    <<set $sleeping = true>>
+    <<set $player.fatigue -= 25 * $hours>>
+    <<if $player.fatigue < 0>><<set $player.fatigue = 0>><</if>>
+<</nobr>>\
+<<print sleep($location, $passageName)>>
 
 <<link "Wake up" $passageName>>
     <<set $showFooter = true>>

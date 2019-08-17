@@ -6,7 +6,11 @@ Survival Game
 
 
 :: StoryInit
+/*  Initial Setup  */
+/* <<set Config.history.maxStates = 1>> */
+
 <<include "StoryVariables">>
 <<include "Items">>
 <<include "Biomes">>
 <<include "PlayerStats">>
+<<include "PlayerSkills">>

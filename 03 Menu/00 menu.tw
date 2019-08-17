@@ -27,15 +27,3 @@ Waterskin($waterSkin)
 		<<set $exitMenuPassage = passage()>>
 	<</if>>
 <</link>>
-
-
-::Skills
-<<set $menu = true>>\
-<<set $showFooter = false>>\
-Will become skills.
-
-<<exitMenu>>
-
-
-::testerdfgdfg
-<button id=<<print _i>> onclick="GetItem(this.id)">Equip</button>

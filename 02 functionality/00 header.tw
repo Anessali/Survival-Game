@@ -8,15 +8,19 @@
     <<else>>\
 <</if>>\
 \
-<<set $time.hours += $hours>>\
-<<set $time.minutes += $minutes>>\
-<<set $time = changeTime($time)>>\
-<<set $player = updateSurvivalStats($hours, $player, $sleeping)>>\
-<<if $sleeping>><<set $sleeping = false>><</if>>\
-<<set $hours = 0>>\
-<<set $minutes = 0>>\
-<<set $time.timeNum = getTimeOfDay($time.hours)>>\
-<<set $displayClock = clockDisplay($time.hours, $time.minutes)>>\
+<<nobr>>
+    <<set $time.hours += $hours>>
+    <<set $time.minutes += $minutes>>
+    <<set $time = changeTime($time)>>
+    <<set $player = updateSurvivalStats($hours, $player, $sleeping)>>
+    <<if $sleeping>>
+        <<set $sleeping = false>>
+    <</if>>
+    <<set $hours = 0>>
+    <<set $minutes = 0>>
+    <<set $time.timeNum = getTimeOfDay($time.hours)>>
+    <<set $displayClock = clockDisplay($time.hours, $time.minutes)>>
+<</nobr>>\
 \
 <div class="food"><<print $player.eatText>></div>\
 <<set $player.eatText = "">>\

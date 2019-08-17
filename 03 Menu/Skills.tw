@@ -1,0 +1,33 @@
+::Skills
+<<set $menu = true>>\
+<<set $showFooter = false>>\
+\
+<<nobr>><table class="container">
+    <tr>
+        <th colspan="5">Skills</th>
+    </tr>
+	<tr>
+		<th>Name</th>
+		<th>Level</th>
+		<th>Experience</th>
+		<th>Next Level</th>
+	</tr>
+    <<set _skillObjects = Object.values($player.skills)>>
+    <<set _objectKeys = Object.keys($player.skills)>>
+    <<for _i = 0; _i < _skillObjects.length; _i++>>
+        <<capture _skillObjects _objectKeys _i>>
+            <tr>
+                <td class="capitalize">
+                    <<link _skillObjects[_i].name>>
+                        <<run ShowSkillDescription(_skillObjects[_i])>>
+                    <</link>>
+                </td>
+                <td><<print _skillObjects[_i].level>></td>
+                <td><<print _skillObjects[_i].exp>></td>
+                <td><<print _skillObjects[_i].nextLevel>></td>
+            </tr>
+        <</capture>>
+    <</for>>
+</table><</nobr>>\
+
+<<exitMenu>>

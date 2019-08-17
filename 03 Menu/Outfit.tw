@@ -50,7 +50,9 @@
     <<for _i = 0; _i < _outfitObjects.length; _i++>>
         <<capture _outfitObjects _objectKeys _i>>
             <tr>
-                <td class="capitalize"><<print _objectKeys[_i]>></td>
+                <td class="capitalize">
+                    <<print _objectKeys[_i]>>
+                </td>
                 <td>
                     <<link _outfitObjects[_i].name>>
                         <<run GetItem($player, _outfitObjects[_i], 1)>>

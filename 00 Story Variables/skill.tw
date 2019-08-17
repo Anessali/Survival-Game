@@ -1,29 +1,47 @@
 :: PlayerSkills
-<<set $skill = {
+<<set $player.skills = {
+    botany : {
+        name : "Botany",
+        description : "This is your understanding of plants and fungi. With more knowledge, you can recognize what's safe to eat and what has medicinal properties.",
+        level: 1,
+        exp: 0
+    },
     crafting : {
+        name : "Crafting",
+        description : "",
         level: 1,
         exp: 0
     },
     foraging : {
+        name : "Foraging",
+        description : "Foraging is how good you are at finding stuff in the wild, whether it's water in places you normally can't find it or a patch of mushrooms.",
         level: 1,
         exp: 0
     },
     marksmanship : {
+        name : "Marksmanship",
+        description : "",
         level: 1,
         exp: 0
     },
     swordsmanship : {
+        name : "Swordsmanship",
+        description : "Your skill with a sword.",
         level: 1,
         exp: 0
     },
     tracking : {
+        name : "Tracking",
+        description : "Tracking is how good you are at finding animals or people.",
         level: 1,
         exp: 0
     },
 }>>
 
-<<set $skill.crafting.nextLevel = $skill.crafting.level * 25>>
-<<set $skill.foraging.nextLevel = $skill.foraging.level * 25>>
-<<set $skill.marksmanship.nextLevel = $skill.marksmanship.level * 25>>
-<<set $skill.swordsmanship.nextLevel = $skill.swordsmanship.level * 25>>
-<<set $skill.tracking.nextLevel = $skill.tracking.level * 25>>
+<<set _nextLevelExp = 25>>
+<<set $player.skills.botany.expToNextLevel = $player.skills.botany.level * _nextLevelExp>>
+<<set $player.skills.crafting.expToNextLevel = $player.skills.crafting.level * _nextLevelExp>>
+<<set $player.skills.foraging.expToNextLevel = $player.skills.foraging.level * _nextLevelExp>>
+<<set $player.skills.marksmanship.expToNextLevel = $player.skills.marksmanship.level * _nextLevelExp>>
+<<set $player.skills.swordsmanship.expToNextLevel = $player.skills.swordsmanship.level * _nextLevelExp>>
+<<set $player.skills.tracking.expToNextLevel = $player.skills.tracking.level * _nextLevelExp>>

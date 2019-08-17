@@ -40,7 +40,7 @@ Space in inventory: <<print $player.inventorySize>> / <<print $player.maxInvento
                 </td>
                 <td>
                     <<button "Inspect Item">>
-                        <<run ShowDescription($player.inventory[_i])>>
+                        <<run $player.inventory[_i].description($player, $player.inventory[_i])>>
                     <</button>>
                 </td>
                 <td>

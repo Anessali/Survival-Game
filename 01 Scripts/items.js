@@ -17,7 +17,7 @@ window.GetItem = function(actor, item, qty) {
     } else {
         //Tests to see if item already exists in inventory
         for(var i = 0; i < actor.inventory.length; i++){
-            if(item.name == actor.inventory[i].name){
+            if(item.id == actor.inventory[i].id){
                 inventoryIndex = i;
                 inInventory = true;
             }
@@ -75,25 +75,6 @@ window.EquipItem = function(actor, item, bodyPart){
         actor.outfit[bodyPart] = item;
     }
     return actor;
-}
-
-//Used to show an item's description when examined.
-window.ShowDescription = function(item){
-    Dialog.setup('Item Description');
-    if(item.damage != null){
-        Dialog.wiki(`"${item.description}"\n\nDamage: ${item.damage}\nSize: ${item.size}`);
-    } else if(item.damage == null && item.warmth != null) {
-        Dialog.wiki(`"${item.description}"\n\nWarmth: ${item.warmth}\nSize: ${item.size}`);
-    } else {
-        Dialog.wiki(`"${item.description}"\n\nSize: ${item.size}`);
-    }
-    
-    Dialog.open();
-}
-
-//Actor attempts to eat the item. Not everything is edible.
-window.EatItem = function(actor, item, isEquipped){
-    
 }
 
 //Used to set an armor piece to "None", the placeholder meaning no item equipped

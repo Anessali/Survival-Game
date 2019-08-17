@@ -2,7 +2,8 @@
 What do you want to forage for?
 
 <<link "Food" "Forage-Food">>
-
+    <<run addExp($player.skills.foraging, 25)>>
+    <<set $hours += 1>>
 <</link>>
 <<link "Water" "Forage-Water">>
 
@@ -15,7 +16,11 @@ What do you want to forage for?
 
 
 :: Forage-Food
-Food
+<<nobr>>
+    <<run forage($location, "food", $player.skills.foraging)>>
+<</nobr>>
+<<for>>
+<</for>>
 
 
 :: Forage-Water

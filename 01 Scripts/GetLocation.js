@@ -1,7 +1,4 @@
 window.explore = function(biome, area, location){
-    // console.log(`biome: ${biome}`);
-    // console.log(`area: ${area}`);
-    
     var num = 0;
     var passage = "";
     if(biome == "forest" && area == "outside"){

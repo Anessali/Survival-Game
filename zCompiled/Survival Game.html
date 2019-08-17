@@ -413,7 +413,7 @@ function Food() {
         eat : function(actor, item, isEquipped){
             actor.eatText = "You plop the mushroom into your mouth, savoring the taste.";
             actor.hunger -= 20;
-            addExp($player.skills.botany, 100);
+            addExp(actor.skills.botany, 25);
             DropItem(actor, item, isEquipped);
 
             return actor;
@@ -439,7 +439,7 @@ function Food() {
         eat : function(actor, item, isEquipped){
             actor.eatText = "You plop the mushroom into your mouth, savoring the taste. It's barely 10 minutes later that you start vomiting. That mushroom was poisonous!";
             actor.hunger += 50;
-            addExp($player.skills.botany, 100);
+            addExp(actor.skills.botany, 100);
             DropItem(actor, item, isEquipped);
             return actor;
         },
@@ -563,7 +563,7 @@ window.DropItem = function(actor, item, isEquipped){
         }
     } else {
         for(var i = 0; i < actor.inventory.length; i++){
-            if(actor.inventory[i].name == item.name){
+            if(actor.inventory[i].id == item.id){
                 actor.inventory[i].qty -= 1;
                 if(actor.inventory[i].qty <= 0){
                     actor.inventory.splice(i, 1);
@@ -584,19 +584,6 @@ window.EquipItem = function(actor, item, bodyPart){
     return actor;
 }
 
-//Used to show an item's description when examined.
-window.ShowDescription = function(actor, item){
-    Dialog.setup('Item Description');
-    if(item.damage != null){
-        Dialog.wiki(`"${item.description}"\n\nDamage: ${item.damage}\nSize: ${item.size}`);
-    } else if(item.damage == null && item.warmth != null) {
-        Dialog.wiki(`"${item.description}"\n\nWarmth: ${item.warmth}\nSize: ${item.size}`);
-    } else {
-        Dialog.wiki(`"${item.description}"\n\nSize: ${item.size}`);
-    }
-    Dialog.open();
-}
-
 //Used to set an armor piece to "None", the placeholder meaning no item equipped
 window.SetNoArmor = function(actor, item){
     var items = Object.values(actor.outfit);
@@ -612,20 +599,25 @@ window.SetNoArmor = function(actor, item){
 /* twine-user-script #7: "Skills.js" */
 //Determines exp gained from certain actions and whether the player levels up
 
-window.AddExp = function(skill, exp){
+window.addExp = function(skill, exp){
     var startingLevel = skill.level;
     var previousExp = skill.expToNextLevel;
+    console.log(`Exp gained: ${exp}`);
+    console.log(`Skill exp: ${skill.exp}`);
     if(skill.level >= 100){
         skill.level = 100;
     } else {
         skill.exp += exp;
-        while(skill.exp >= skill.nextLeve){
+        while(skill.exp >= skill.expToNextLevel){
+            skill.exp -= skill.expToNextLevel;
             skill.level += 1;
             //Math formula determining exp needed to level up
             skill.expToNextLevel = Math.round(previousExp + 50 + previousExp * 0.01);
         }
         if(skill.level > startingLevel){
+            Dialog.setup('Level Up');
             Dialog.wiki(`${skill.name} has increased to level ${skill.level}!`);
+            Dialog.open();
         }
     }
     return skill;
@@ -915,7 +907,7 @@ window.getTimeOfDay = function(hours){
 &lt;&lt;set $player.outfit.feet = $items.armor.noarmor&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="PlayerSkills" tags="" position="725,100">&lt;&lt;set $player.skills = {
     botany : {
         name : &quot;Botany&quot;,
-        description : &quot;This is your understanding of plants and fungi. With more knowledge, you can recognize what&#39;s safe to eat and what has medicinal properties.&quot;,
+        description : &quot;This is your understanding of plants and fungi. As you gain more knowledge about plants, you begin recognize what&#39;s safe to eat as well as other properties.&quot;,
         level: 1,
         exp: 0
     },
@@ -1133,14 +1125,13 @@ Space in inventory: &lt;&lt;print $player.inventorySize&gt;&gt; / &lt;&lt;print 
                 &lt;/td&gt;
                 &lt;td&gt;
                     &lt;&lt;button &quot;Eat&quot;&gt;&gt;
-                        &lt;&lt;run $player.inventory[_i].eat($player, $player.inventory[_i], false)&gt;&gt;
+                        &lt;&lt;run $player.inventory[_i].eat($player, $player.inventory[_i])&gt;&gt;
                         &lt;&lt;goto &quot;Bag&quot;&gt;&gt;
                     &lt;&lt;/button&gt;&gt;
                 &lt;/td&gt;
                 &lt;td&gt;
                     &lt;&lt;button &quot;Inspect Item&quot;&gt;&gt;
                         &lt;&lt;run $player.inventory[_i].description($player, $player.inventory[_i])&gt;&gt;
-                        /*&lt;&lt;run ShowDescription($player, $player.inventory[_i])&gt;&gt;*/
                     &lt;&lt;/button&gt;&gt;
                 &lt;/td&gt;
                 &lt;td&gt;
@@ -1178,7 +1169,7 @@ Space in inventory: &lt;&lt;print $player.inventorySize&gt;&gt; / &lt;&lt;print 
         &lt;/td&gt;
         &lt;td&gt;
             &lt;&lt;button &quot;Inspect Item&quot;&gt;&gt;
-                &lt;&lt;run ShowDescription($player.weapon)&gt;&gt;
+                &lt;&lt;run $player.weapon.description($player, $player.weapon)&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/td&gt;
         &lt;td&gt;
@@ -1219,7 +1210,7 @@ Space in inventory: &lt;&lt;print $player.inventorySize&gt;&gt; / &lt;&lt;print 
                 &lt;/td&gt;
                 &lt;td&gt;
                     &lt;&lt;button &quot;Inspect Item&quot;&gt;&gt;
-                        &lt;&lt;run ShowDescription(_outfitObjects[_i])&gt;&gt;
+                        &lt;&lt;run _outfitObjects[_i].description($player, _outfitObjects[_i])&gt;&gt;
                     &lt;&lt;/button&gt;&gt;
                 &lt;/td&gt;
                 &lt;td&gt;
@@ -1258,7 +1249,7 @@ Space in inventory: &lt;&lt;print $player.inventorySize&gt;&gt; / &lt;&lt;print 
                 &lt;/td&gt;
                 &lt;td&gt;&lt;&lt;print _skillObjects[_i].level&gt;&gt;&lt;/td&gt;
                 &lt;td&gt;&lt;&lt;print _skillObjects[_i].exp&gt;&gt;&lt;/td&gt;
-                &lt;td&gt;&lt;&lt;print _skillObjects[_i].nextLevel&gt;&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;&lt;print _skillObjects[_i].expToNextLevel&gt;&gt;&lt;/td&gt;
             &lt;/tr&gt;
         &lt;&lt;/capture&gt;&gt;
     &lt;&lt;/for&gt;&gt;

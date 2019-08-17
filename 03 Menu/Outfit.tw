@@ -24,7 +24,7 @@
         </td>
         <td>
             <<button "Inspect Item">>
-                <<run ShowDescription($player.weapon)>>
+                <<run $player.weapon.description($player, $player.weapon)>>
             <</button>>
         </td>
         <td>
@@ -65,7 +65,7 @@
                 </td>
                 <td>
                     <<button "Inspect Item">>
-                        <<run ShowDescription(_outfitObjects[_i])>>
+                        <<run _outfitObjects[_i].description($player, _outfitObjects[_i])>>
                     <</button>>
                 </td>
                 <td>

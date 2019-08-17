@@ -56,7 +56,7 @@ window.DropItem = function(actor, item, isEquipped){
         }
     } else {
         for(var i = 0; i < actor.inventory.length; i++){
-            if(actor.inventory[i].name == item.name){
+            if(actor.inventory[i].id == item.id){
                 actor.inventory[i].qty -= 1;
                 if(actor.inventory[i].qty <= 0){
                     actor.inventory.splice(i, 1);

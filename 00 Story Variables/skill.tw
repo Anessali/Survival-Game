@@ -2,7 +2,7 @@
 <<set $player.skills = {
     botany : {
         name : "Botany",
-        description : "This is your understanding of plants and fungi. With more knowledge, you can recognize what's safe to eat and what has medicinal properties.",
+        description : "This is your understanding of plants and fungi. As you gain more knowledge about plants, you begin recognize what's safe to eat as well as other properties.",
         level: 1,
         exp: 0
     },

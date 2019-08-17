@@ -34,7 +34,7 @@ Space in inventory: <<print $player.inventorySize>> / <<print $player.maxInvento
                 </td>
                 <td>
                     <<button "Eat">>
-                        <<run $player.inventory[_i].eat($player, $player.inventory[_i], false)>>
+                        <<run $player.inventory[_i].eat($player, $player.inventory[_i])>>
                         <<goto "Bag">>
                     <</button>>
                 </td>

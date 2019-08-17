@@ -24,7 +24,7 @@
                 </td>
                 <td><<print _skillObjects[_i].level>></td>
                 <td><<print _skillObjects[_i].exp>></td>
-                <td><<print _skillObjects[_i].nextLevel>></td>
+                <td><<print _skillObjects[_i].expToNextLevel>></td>
             </tr>
         <</capture>>
     <</for>>

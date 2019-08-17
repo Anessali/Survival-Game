@@ -21,7 +21,7 @@ Players need to manage hunger, thirst, and fatigue. In addition, they need to be
 - [x] Player becomes hungry, thirsty, and fatigued over time
 - [x] Player can eat, drink, and sleep to manage their needs.
 - [ ] Forage for food/water/items
-- [ ] Skills
+- [x] Skills
 - [ ] Make camp
 - [ ] Crafting
 

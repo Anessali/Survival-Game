@@ -122,7 +122,7 @@ function Food() {
         eat : function(actor, item, isEquipped){
             actor.eatText = "You plop the mushroom into your mouth, savoring the taste.";
             actor.hunger -= 20;
-            addExp($player.skills.botany, 25);
+            addExp(actor.skills.botany, 25);
             DropItem(actor, item, isEquipped);
 
             return actor;
@@ -148,7 +148,7 @@ function Food() {
         eat : function(actor, item, isEquipped){
             actor.eatText = "You plop the mushroom into your mouth, savoring the taste. It's barely 10 minutes later that you start vomiting. That mushroom was poisonous!";
             actor.hunger += 50;
-            addExp($player.skills.botany, 100);
+            addExp(actor.skills.botany, 100);
             DropItem(actor, item, isEquipped);
             return actor;
         },

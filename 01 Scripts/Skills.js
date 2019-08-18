@@ -1,10 +1,9 @@
 //Determines exp gained from certain actions and whether the player levels up
-
 window.addExp = function(skill, exp){
     var startingLevel = skill.level;
     var previousExp = skill.expToNextLevel;
-    console.log(`Exp gained: ${exp}`);
-    console.log(`Skill exp: ${skill.exp}`);
+    // console.log(`Exp gained: ${exp}`);
+    // console.log(`Skill exp: ${skill.exp}`);
     if(skill.level >= 100){
         skill.level = 100;
     } else {
@@ -13,7 +12,7 @@ window.addExp = function(skill, exp){
             skill.exp -= skill.expToNextLevel;
             skill.level += 1;
             //Math formula determining exp needed to level up
-            skill.expToNextLevel = Math.round(previousExp + 50 + previousExp * 0.01);
+            skill.expToNextLevel = Math.round(previousExp + 40 + previousExp * 0.01);
         }
         if(skill.level > startingLevel){
             Dialog.setup('Level Up');

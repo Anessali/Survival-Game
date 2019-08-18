@@ -4,45 +4,89 @@
  * 'Item' means the item object being passed.
 */
 
-// Attempts to add an item to actor inventory.
-window.GetItem = function(actor, item, qty) {
+/* Attempts to add an item to actor inventory. */
+window.GetItem = function (actor, item) {
     var availableSpace = actor.maxInventorySize - actor.inventorySize;
-    var inventoryIndex;
-    var inInventory = false;
-    item.qty = 1;
-    
-    //None is a placeholder item referring to parts of the body with nothing on it. Should not appear in inventory.
-    if(item.name == "None"){
-        //Purposely empty if
+    var index = -1;        /* Assume the item isn't in actor's inventory. */
+
+    /* None is a placeholder item referring to parts of the body with nothing on it. Should not appear in inventory. */
+    if (item.name == "None") {
+        /* Purposely empty if */
     } else {
-        //Tests to see if item already exists in inventory
-        for(var i = 0; i < actor.inventory.length; i++){
-            if(item.id == actor.inventory[i].id){
-                inventoryIndex = i;
-                inInventory = true;
+        /* Tests to see if item already exists in inventory */
+        for (var i = 0; i < actor.inventory.length; i++) {
+            if (item.id == actor.inventory[i].id) {
+                index = i;
+                break;
             }
         }
-        //loop adds as much of item as will fit
-        for(var i = 0; i < qty; i++){
-            if(availableSpace >= 0 && (availableSpace - item.size >= 0)){
-                availableSpace -= item.size;
-                actor.inventorySize += item.size;
-                if(inInventory){
-                    actor.inventory[inventoryIndex].qty += 1;
-                } else {
-                    actor.inventory.push(item);
-                    inInventory = true;
-                    inventoryIndex = actor.inventory.length - 1;
-                }
+        
+        if ((availableSpace - item.size) >= 0) {
+            availableSpace -= item.size;
+            actor.inventorySize += item.size;
+
+            if (index !== -1) {
+                actor.inventory[index].qty += 1;
             } else {
-                Dialog.setup('Alert');
-                Dialog.wiki(`Inventory full. Extra items have been dropped.`);
-                Dialog.open();
+                /* Add a copy of the item to the actor's inventory. */
+                index = actor.inventory.push(clone(item)) - 1;
+                /* reset the quantiyy on actor's copy. */
+                actor.inventory[index].qty = 1;
             }
+            /* Reduce the quantity of the item. */
+            item.qty = Math.max(item.qty - 1, 0);
+            
+        } else {
+            Dialog.setup('Alert');
+            Dialog.wiki(`Inventory full. Extra items have been dropped.`);
+            Dialog.open();
         }
     }
     return actor;
 }
+
+// Attempts to add an item to actor inventory.
+// window.GetItem = function(actor, item) {
+//     var availableSpace = actor.maxInventorySize - actor.inventorySize;
+//     var index;
+//     var inInventory = false;
+
+
+//     //None is a placeholder item referring to parts of the body with nothing on it. Should not appear in inventory.
+//     if(item.name == "None"){
+//         //Purposely empty if
+//     } else {
+//         //Tests to see if item already exists in inventory
+//         for(var i = 0; i < actor.inventory.length; i++){
+//             if(item.id == actor.inventory[i].id){
+//                 index = i;
+//                 inInventory = true;
+//                 break;
+//             }
+//         }
+        
+//         if((availableSpace - item.size) >= 0){
+//             availableSpace -= item.size;
+//             actor.inventorySize += item.size;
+//             if(inInventory){
+//                 actor.inventory[index].qty += 1;
+//             } else {
+//                 actor.inventory.push(item);
+//                 inInventory = true;
+//                 index = actor.inventory.length - 1;
+//                 console.log(`Inventory quantity: ${actor.inventory[index].qty}`);
+//                 // console.log(`Quantity: ${actor.inventory[index].qty}`);
+//             }
+            
+//         } else {
+//             Dialog.setup('Alert');
+//             Dialog.wiki(`Inventory full. Extra items have been dropped.`);
+//             Dialog.open();
+//         }
+//     }
+//     console.log(`Inventory quantity: ${actor.inventory[index].qty}`);
+//     return actor;
+// }
 
 //Deletes an item from the inventory. isEquipped is a boolean referring to whether an item is equipped or in inventory.
 window.DropItem = function(actor, item, isEquipped){
@@ -65,6 +109,21 @@ window.DropItem = function(actor, item, isEquipped){
         }
     }
     return actor;
+}
+
+//Removes item from a container, such as a chest or the foraging array. Container refers to an array.
+window.RemoveFromContainer = function(container, item){
+    // console.log(`Start item qty: ${container[0].qty}`);
+    for(var i = 0; i < container.length; i++){
+        if(container[i].id == item.id){
+            // console.log(`Item qty: ${container[i].qty}`);
+            container[i].qty -= 1;
+            if(container[i].qty <= 0){
+                container.splice(i, 1);
+            }
+        }
+    }
+    return container;
 }
 
 //Equips an item. Uses placement to link up with bodyPart.

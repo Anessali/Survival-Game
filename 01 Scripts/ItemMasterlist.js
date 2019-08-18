@@ -130,6 +130,7 @@ function Food() {
         placement : "weapon",
         damage: -2,
         warmth: 0,
+        qty: 1,
         size: 0.5,
         rarity: 0.01
     },
@@ -155,6 +156,7 @@ function Food() {
         placement : "weapon",
         damage: -2,
         warmth: 0,
+        qty: 1,
         size: 0.5,
         rarity: 0.01
     }

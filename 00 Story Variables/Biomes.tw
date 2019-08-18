@@ -13,6 +13,7 @@
     food : [$items.food.mushroom01, $items.food.mushroom02],
     items : [$items.items.rock, $items.items.branch],
     waterRarity: 0.3,
-    camp : ""
+    camp : "",
+    forageArray : []
 }>>
 

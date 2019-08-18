@@ -33,10 +33,3 @@ What color are your eyes?
 
 ::Lost-Forest01
 You're in a forest clearing.
-
-<<link "Pick up Mushroom">>
-    <<run GetItem($player, $items.food.mushroom01, 1)>>
-<</link>>
-<<link "Pick up Mushroom">>
-    <<run GetItem($player, $items.food.mushroom02, 1)>>
-<</link>>

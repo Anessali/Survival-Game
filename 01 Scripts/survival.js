@@ -72,32 +72,41 @@ window.forage = function(location, type, foraging){
      * At level 100 foraging, a character should have a 90% chance of finding food with a rarity of 1%
      * 0.01 * 10 == 0.1, or 10% chance
      */
-    var maxPercentageChance = 0; 
-    var numberToBeat = 0; 
-    var num = 0;
-    var itemArray = [];
-    var inInventory = false;
+    var rolledNumber = 0, numberToBeat = 0, num = 0, difference = 0;
+    var inArray = false;
+    var index = 0;
+    
+    location.forageArray = [];
     if(type == "food"){
-        for(var i = 0; i < location.area.food; i++){
-            //Numbers are randomly generated. maxPercentageChance needs to be higher than numberToBeat to find item
-            maxPercentageChance = Math.floor(Math.random() * 90) + 1;
+        for(var i = 0; i < location.area.food.length; i++){
+            //for loop variables
+            var item = location.area.food[i];
+            //Numbers are randomly generated. rolledNumber needs to be higher than numberToBeat to find an item
+            rolledNumber = Math.floor(Math.random() * 90) + 1;
             numberToBeat = Math.floor(Math.random() * 100) + 1;
             //Foraging level makes items less rare. 1% rarity items become 10% at level 10
             num = location.area.food[i].rarity * foraging.level;
-            num *= maxPercentageChance ;
-            console.log(`maxPercentageChance: ${maxPercentageChance}`);
-            console.log(`numberToBeat: ${numberToBeat}`);
-            console.log(`num: ${num}`);
-            if(num > numberToBeat){
-                //Tests to see if item already exists in inventory
-                if(itemArray.includes(location.area.food[i].id)){
-                    console.log("includes() success");
-                    inventoryIndex = i;
-                    inInventory = true;
+            num *= rolledNumber ;
+            difference = num - numberToBeat;
+            while(num > numberToBeat){
+                num -= 100;
+                //Tests to see if item already exists in array
+                for(var x = 0; x < location.forageArray.length; x++){
+                    // console.log(`inArray value: ${inArray}`);
+                    if(location.forageArray[x].id == item.id){
+                        index = x;
+                        inArray = true;
+                    } 
                 }
-                //add item to array
-                itemArray.push();
+                if(inArray) {
+                    location.forageArray[index].qty += 1;
+                } else {
+                    location.forageArray.push(item);
+                    inArray = true;
+                    index = location.forageArray.length - 1;
+                }
             }
+            // console.log(location.forageArray);
         }
     } else if("water") {
         
@@ -106,5 +115,5 @@ window.forage = function(location, type, foraging){
         
         }
     }
-    return itemArray;
+    return location.forageArray;
 }

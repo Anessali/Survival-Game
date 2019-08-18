@@ -14,7 +14,7 @@
     <tr>
         <td>
             <<link $player.weapon.name>>
-                <<run GetItem($player, $player.weapon, 1)>>
+                <<run GetItem($player, $player.weapon)>>
                 <<set $player.weapon = $items.weapons.noweapon>>
                 <<goto "Outfit">>
             <</link>>

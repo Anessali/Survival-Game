@@ -1,9 +1,18 @@
 :: Forage
+<<nobr>>
+    <<set $showFooter = false>>
+<</nobr>>\
 What do you want to forage for?
 
-<<link "Food" "Forage-Food">>
+<<link "Food" "">>
     <<run addExp($player.skills.foraging, 25)>>
+    <<run forage($location, "food", $player.skills.foraging)>>
     <<set $hours += 1>>
+    <<if $location.forageArray.length > 0>>
+        <<goto "Forage-Food">>
+    <<else>>
+        <<goto "Forage-Failure">>
+    <</if>>
 <</link>>
 <<link "Water" "Forage-Water">>
 
@@ -17,15 +26,43 @@ What do you want to forage for?
 
 :: Forage-Food
 <<nobr>>
-    <<run forage($location, "food", $player.skills.foraging)>>
-<</nobr>>
-<<for>>
-<</for>>
+    <<set $showFooter = false>>
+<</nobr>>\
+<<if $location.forageArray.length == 0>>\
+    There's nothing left here.
+
+<<else>>\
+    Your foraging has paid off and you managed to find some food.
+
+<</if>>\
+<<capture _i>>\
+    <<for _i = 0; _i < $location.forageArray.length; _i++>>
+        <<set _itemName = "Pick up " + $location.forageArray[_i].name + " - " + $location.forageArray[_i].qty>>\
+        <<link _itemName>>
+            <<nobr>>
+                <<run GetItem($player, $location.forageArray[_i])>>
+                /* <<run RemoveFromContainer($location.forageArray, $location.forageArray[_i])>> */
+                <<goto "Forage-Food">>
+            <</nobr>>
+        <</link>>
+    <</for>>
+<</capture>>\
+
+[[Return|Forage]]
 
 
 :: Forage-Water
 Water
 
+[[Return|Forage]]
 
 :: Forage-Materials
 Materials
+
+[[Return|Forage]]
+
+
+:: Forage-Failure
+Despite spending an hour foraging, you don't manage to find a thing.
+
+[[Return|Forage]]

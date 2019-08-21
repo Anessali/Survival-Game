@@ -42,8 +42,6 @@
 <<set $minutes = 0>>
 <<set $displayClock = clockDisplay($time.hours, $time.minutes)>>
 
-<<set $waterSkin = 3>>
-
 <<set $sleeping = false>>
 <<set $camp = false>>
 <<set $waterSoruce = false>>

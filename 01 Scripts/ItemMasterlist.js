@@ -121,16 +121,18 @@ function Food() {
         }, 
         eat : function(actor, item, isEquipped){
             actor.eatText = "You plop the mushroom into your mouth, savoring the taste.";
-            actor.hunger -= 20;
-            addExp(actor.skills.botany, 25);
-            DropItem(actor, item, isEquipped);
+            // actor.needs.hunger -= 20;
+            eatItem(actor, -20, item, 50);
+            // addExp(actor.skills.botany, 50);
+            // DropItem(actor, item, isEquipped);
 
             return actor;
         },
         placement : "weapon",
         damage: -2,
         warmth: 0,
-        qty: 1,
+        qty: 3,
+        forageExp: 200,
         size: 0.5,
         rarity: 0.01
     },
@@ -147,23 +149,107 @@ function Food() {
             Dialog.open();
         }, 
         eat : function(actor, item, isEquipped){
-            actor.eatText = "You plop the mushroom into your mouth, savoring the taste. It's barely 10 minutes later that you start vomiting. That mushroom was poisonous!";
-            actor.hunger += 50;
-            addExp(actor.skills.botany, 100);
-            DropItem(actor, item, isEquipped);
+            actor.eatText = "You plop the mushroom into your mouth, savoring the taste. Unfortunately, you begin to feel ill afterwards.";
+            // actor.needs.hunger += 50;
+            eatItem(actor, 50, item, 100);
+            // addExp(actor.skills.botany, 100);
+            // DropItem(actor, item, isEquipped);
             return actor;
         },
         placement : "weapon",
         damage: -2,
         warmth: 0,
-        qty: 1,
+        qty: 3,
+        forageExp: 200,
         size: 0.5,
         rarity: 0.01
+    },
+    State.variables.items.food.berry01 = {
+        id: "berry01",
+        name: "Berry",
+        description: function(actor, item){
+            Dialog.setup('Item Description');
+            Dialog.wiki(`Maybe it's safe to eat?\n\nDamage: ${item.damage}\nSize: ${item.size}`);
+            Dialog.open();
+        }, 
+        eat : function(actor, item, isEquipped){
+            actor.eatText = "You toss the berry into your mouth, savoring the taste.";
+            // actor.needs.hunger -= 10;
+            eatItem(actor, -10, item, 25);
+            // addExp(actor.skills.botany, 25);
+            // DropItem(actor, item, isEquipped);
+
+            return actor;
+        },
+        placement : "weapon",
+        damage: -2,
+        warmth: 0,
+        qty: 6,
+        forageExp: 50,
+        size: 0.2,
+        rarity: 0.02
+    },
+    State.variables.items.food.berry02 = {
+        id: "berry02",
+        name: "Berry",
+        description: function(actor, item){
+            Dialog.setup('Item Description');
+            Dialog.wiki(`Maybe it's safe to eat?\n\nDamage: ${item.damage}\nSize: ${item.size}`);
+            Dialog.open();
+        }, 
+        eat : function(actor, item){
+            actor.eatText = "You toss the berry into your mouth, savoring the taste.";
+            eatItem(actor, -10, item, 25);
+            // addExp(actor.skills.botany, 25);
+            // DropItem(actor, item, isEquipped);
+            return actor;
+        },
+        placement : "weapon",
+        damage: -2,
+        warmth: 0,
+        qty: 6,
+        forageExp: 50,
+        size: 0.2,
+        rarity: 0.02
+    },
+    State.variables.items.food.berry03 = {
+        id: "berry03",
+        name: "Berry",
+        description: function(actor, item){
+            Dialog.setup('Item Description');
+            if(actor.skills.botany.level >= 10){
+                Dialog.wiki(`Thanks to your plant knowledge, you can tell this berry is poisonous. You should probably get rid of it.\n\nDamage: ${item.damage}\nSize: ${item.size}`);
+            } else {
+                Dialog.wiki(`Maybe it's safe to eat?\n\nDamage: ${item.damage}\nSize: ${item.size}`);
+            }
+            Dialog.open();
+        }, 
+        eat : function(actor, item){
+            actor.eatText = "You toss the berry into your mouth, savoring the taste. Unfortunately, you begin to feel ill afterwards.";
+            eatItem(actor, 80, item, 50);
+            // addExp(actor.skills.botany, 50);
+            // DropItem(actor, item, isEquipped);
+
+            return actor;
+        },
+        placement : "weapon",
+        damage: -2,
+        warmth: 0,
+        qty: 6,
+        forageExp: 50,
+        size: 0.2,
+        rarity: 0.02
     }
 }
 
-function Misc() {
-
+function Drinks() {
+    State.variables.items.food.forestStream01 = {
+        id: "forestStream01",
+        name: "You found a stream cutting through the forest.",
+        qty: null,
+        forageExp: 200,
+        rarity: 0.05
+    }
 }
 
 function Crafting(){
@@ -184,6 +270,7 @@ function Crafting(){
         damage: 1,
         size: 1,
         qty : 1,
+        forageExp: 50,
         rarity: 0.4
     },
     State.variables.items.items.branch = {
@@ -202,8 +289,13 @@ function Crafting(){
         damage: 1,
         size: 1,
         qty : 1,
-        rarity: 0.5
+        forageExp: 50,
+        rarity: 1
     }
+}
+
+function Misc() {
+
 }
 
 //This file is mostly used to add items to the game world.
@@ -212,6 +304,7 @@ window.AddStaticItems = function(){
     Armor();
     Crafting();
     Food();
+    Drinks();
     Misc();
     // console.log(State.variables.items); //If uncommented, prints all game items in the console
 }

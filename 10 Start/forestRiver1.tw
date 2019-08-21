@@ -1,2 +1,2 @@
 ::ForestRiver1
-There's a break in the cluster of trees where water trickles down a long, winding <<link "stream." "Drink">><<set $passage = passage()>><<set $showFooter = false>><<drink>><</link>> The sound seems to go on forever, disappearing off into the woods. 
+There's a break in the cluster of trees where water trickles down a long, winding <<link "stream." "">><<drink>><</link>> The sound seems to go on forever, disappearing off into the woods. 

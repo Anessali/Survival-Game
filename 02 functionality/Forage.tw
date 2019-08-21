@@ -9,16 +9,30 @@ What do you want to forage for?
     <<run forage($location, "food", $player.skills.foraging)>>
     <<set $hours += 1>>
     <<if $location.forageArray.length > 0>>
+        <<for _i = 0; _i < $location.forageArray.length; _i++>>
+            <<run addExp($player.skills.foraging, $location.forageArray[_i].forageExp)>>
+        <</for>>
         <<goto "Forage-Food">>
     <<else>>
         <<goto "Forage-Failure">>
     <</if>>
 <</link>>
 <<link "Water" "Forage-Water">>
+    <<run addExp($player.skills.foraging, 25)>>
 
 <</link>>
-<<link "Materials" "Forage-Materials">>
-
+<<link "Materials" "">>
+    <<run addExp($player.skills.foraging, 25)>>
+    <<run forage($location, "items", $player.skills.foraging)>>
+    <<set $hours += 1>>
+    <<if $location.forageArray.length > 0>>
+        <<for _i = 0; _i < $location.forageArray.length; _i++>>
+            <<run addExp($player.skills.foraging, $location.forageArray[_i].forageExp)>>
+        <</for>>
+        <<goto "Forage-Materials">>
+    <<else>>
+        <<goto "Forage-Failure">>
+    <</if>>
 <</link>>
 
 [[Nevermind|$passageName][$showFooter = true]]
@@ -36,16 +50,15 @@ What do you want to forage for?
 
 <</if>>\
 <<capture _i>>\
-    <<for _i = 0; _i < $location.forageArray.length; _i++>>
+    <<for _i = 0; _i < $location.forageArray.length; _i++>>\
         <<set _itemName = "Pick up " + $location.forageArray[_i].name + " - " + $location.forageArray[_i].qty>>\
         <<link _itemName>>
             <<nobr>>
-                <<run GetItem($player, $location.forageArray[_i])>>
-                /* <<run RemoveFromContainer($location.forageArray, $location.forageArray[_i])>> */
+                <<run GetItem($player, $location.forageArray[_i], $location.forageArray)>>
                 <<goto "Forage-Food">>
             <</nobr>>
-        <</link>>
-    <</for>>
+        <</link>>\
+    <</for>>\
 <</capture>>\
 
 [[Return|Forage]]
@@ -57,12 +70,34 @@ Water
 [[Return|Forage]]
 
 :: Forage-Materials
-Materials
+<<nobr>>
+    <<set $showFooter = false>>
+<</nobr>>\
+<<if $location.forageArray.length == 0>>\
+    There's nothing left here.
+
+<<else>>\
+    Your foraging has paid off and you managed to find some materials.
+
+<</if>>\
+<<capture _i>>\
+    <<for _i = 0; _i < $location.forageArray.length; _i++>>
+        <<set _itemName = "Pick up " + $location.forageArray[_i].name + " - " + $location.forageArray[_i].qty>>\
+        <<link _itemName>>
+            <<nobr>>
+                <<run GetItem($player, $location.forageArray[_i], $location.forageArray)>>
+                /* <<run RemoveFromContainer($location.forageArray, $location.forageArray[_i])>> */
+                <<goto "Forage-Materials">>
+            <</nobr>>
+        <</link>>
+    <</for>>
+<</capture>>\
 
 [[Return|Forage]]
 
 
 :: Forage-Failure
+<<set $showFooter = false>>\
 Despite spending an hour foraging, you don't manage to find a thing.
 
 [[Return|Forage]]

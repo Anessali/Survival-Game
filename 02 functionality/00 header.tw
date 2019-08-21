@@ -1,14 +1,13 @@
 :: PassageHeader
-<<if $player.thirst > 30 && $waterSkin > 0>>\
-    <<set $waterSkin -= 1>>\
-    <<drink>>
-<</if>>\
 <<if displayStatus($player) != "">>\
     @@color:orange;<<print displayStatus($player)>>@@
     <<else>>\
 <</if>>\
 \
 <<nobr>>
+    <<if $player.hp <= 0>>
+        <<goto "PlayerDeath">>
+    <</if>>
     <<set $time.hours += $hours>>
     <<set $time.minutes += $minutes>>
     <<set $time = changeTime($time)>>
@@ -23,4 +22,6 @@
 <</nobr>>\
 \
 <div class="food"><<print $player.eatText>></div>\
+<div class="drink"><<print $player.drinkText>></div>\
 <<set $player.eatText = "">>\
+<<set $player.drinkText = "">>\

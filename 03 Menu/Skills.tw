@@ -10,7 +10,6 @@
 		<th>Name</th>
 		<th>Level</th>
 		<th>Experience</th>
-		<th>Next Level</th>
 	</tr>
     <<set _skillObjects = Object.values($player.skills)>>
     <<set _objectKeys = Object.keys($player.skills)>>
@@ -23,8 +22,7 @@
                     <</link>>
                 </td>
                 <td><<print _skillObjects[_i].level>></td>
-                <td><<print _skillObjects[_i].exp>></td>
-                <td><<print _skillObjects[_i].expToNextLevel>></td>
+                <td><<print _skillObjects[_i].exp>> / <<print _skillObjects[_i].expToNextLevel>></td>
             </tr>
         <</capture>>
     <</for>>

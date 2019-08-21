@@ -1,5 +1,7 @@
 :: SurvivalWidgets [widget]
 <<widget "drink">><<nobr>>
-    You take a drink.
-    <<set $player.thirst = 0>>
+    <<set $passage = passage()>>
+    <<set $player.drinkText = "You take a drink.">>
+    <<set $player.needs.thirst = 0>>
+    <<goto $passage>>
 <</nobr>><</widget>>

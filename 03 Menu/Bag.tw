@@ -5,7 +5,7 @@
 <<for _i = 0; _i < $player.inventory.length; _i++>><<nobr>>
     <<set $player.inventorySize += $player.inventory[_i].size * $player.inventory[_i].qty>>
 <</nobr>><</for>>\
-Space in inventory: <<print $player.inventorySize>> / <<print $player.maxInventorySize>>
+Space in inventory: <<print $player.inventorySize.toFixed(1)>> / <<print $player.maxInventorySize>>
 <<nobr>><table class="container">
 	<tr>
 		<th>Name</th>

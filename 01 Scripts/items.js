@@ -5,7 +5,7 @@
 */
 
 /* Attempts to add an item to actor inventory. */
-window.GetItem = function (actor, item) {
+window.GetItem = function (actor, item, container) {
     var availableSpace = actor.maxInventorySize - actor.inventorySize;
     var index = -1;        /* Assume the item isn't in actor's inventory. */
 
@@ -41,52 +41,21 @@ window.GetItem = function (actor, item) {
             Dialog.wiki(`Inventory full. Extra items have been dropped.`);
             Dialog.open();
         }
+
+        //Clears item from container if applicable
+        if(container != undefined){
+            for(var i = 0; i < container.length; i++){
+                if(container[i].id == item.id){
+                    if(container[i].qty <= 0){
+                        container.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+        }
     }
     return actor;
 }
-
-// Attempts to add an item to actor inventory.
-// window.GetItem = function(actor, item) {
-//     var availableSpace = actor.maxInventorySize - actor.inventorySize;
-//     var index;
-//     var inInventory = false;
-
-
-//     //None is a placeholder item referring to parts of the body with nothing on it. Should not appear in inventory.
-//     if(item.name == "None"){
-//         //Purposely empty if
-//     } else {
-//         //Tests to see if item already exists in inventory
-//         for(var i = 0; i < actor.inventory.length; i++){
-//             if(item.id == actor.inventory[i].id){
-//                 index = i;
-//                 inInventory = true;
-//                 break;
-//             }
-//         }
-        
-//         if((availableSpace - item.size) >= 0){
-//             availableSpace -= item.size;
-//             actor.inventorySize += item.size;
-//             if(inInventory){
-//                 actor.inventory[index].qty += 1;
-//             } else {
-//                 actor.inventory.push(item);
-//                 inInventory = true;
-//                 index = actor.inventory.length - 1;
-//                 console.log(`Inventory quantity: ${actor.inventory[index].qty}`);
-//                 // console.log(`Quantity: ${actor.inventory[index].qty}`);
-//             }
-            
-//         } else {
-//             Dialog.setup('Alert');
-//             Dialog.wiki(`Inventory full. Extra items have been dropped.`);
-//             Dialog.open();
-//         }
-//     }
-//     console.log(`Inventory quantity: ${actor.inventory[index].qty}`);
-//     return actor;
-// }
 
 //Deletes an item from the inventory. isEquipped is a boolean referring to whether an item is equipped or in inventory.
 window.DropItem = function(actor, item, isEquipped){
@@ -109,21 +78,6 @@ window.DropItem = function(actor, item, isEquipped){
         }
     }
     return actor;
-}
-
-//Removes item from a container, such as a chest or the foraging array. Container refers to an array.
-window.RemoveFromContainer = function(container, item){
-    // console.log(`Start item qty: ${container[0].qty}`);
-    for(var i = 0; i < container.length; i++){
-        if(container[i].id == item.id){
-            // console.log(`Item qty: ${container[i].qty}`);
-            container[i].qty -= 1;
-            if(container[i].qty <= 0){
-                container.splice(i, 1);
-            }
-        }
-    }
-    return container;
 }
 
 //Equips an item. Uses placement to link up with bodyPart.

@@ -1,5 +1,6 @@
 //Determines exp gained from certain actions and whether the player levels up
 window.addExp = function(skill, exp){
+    console.log(`Exp gained: ${exp}`);
     var startingLevel = skill.level;
     var previousExp = skill.expToNextLevel;
     // console.log(`Exp gained: ${exp}`);

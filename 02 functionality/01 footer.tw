@@ -10,19 +10,26 @@
         <<set $showFooter = false>>
         <<set $passageName = passage()>>
     <</link>>
-    <<link "Make Camp" "Sleep">>
+    <<link "Make Camp" "Make-Camp">>
         <<set $showFooter = false>>
         <<set $passageName = passage()>>
     <</link>>
 <</if>>\
 
 
+:: Make-Camp
+This hasn't been set up yet.
+
+<<link "Exit" $passageName>>
+    <<set $showFooter = true>>
+<</link>>
+
 :: Sleep
 <<nobr>>
     <<set $hours += 8>>
     <<set $sleeping = true>>
-    <<set $player.fatigue -= 25 * $hours>>
-    <<if $player.fatigue < 0>><<set $player.fatigue = 0>><</if>>
+    <<set $player.needs.fatigue -= 12 * $hours>>
+    <<if $player.needs.fatigue < 0>><<set $player.needs.fatigue = 0>><</if>>
 <</nobr>>\
 <<print sleep($location, $passageName)>>
 

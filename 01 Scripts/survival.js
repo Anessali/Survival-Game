@@ -1,19 +1,22 @@
 //Updates survival stats - hunger, thirst, and fatigue
 window.updateSurvivalStats = function(hours, player, sleeping){
-    player.hunger += hours * 5;
-    player.thirst += hours * 10;
-    player.fatigue += hours * 5;
+    player.needs.hunger += hours * 5;
+    player.needs.thirst += hours * 10;
+    player.needs.fatigue += hours * 5;
     if (sleeping){
-        player.fatigue -= hours * 5;
+        player.needs.fatigue -= hours * 5;
     }
-    if (player.hunger > 200){
-        player.hunger = 200;
+    if (player.needs.hunger >= 100){
+        player.needs.hunger = 0;
+        player.needs.malnourishment += 1;
     }
-    if(player.thirst > 200){
-        player.thirst = 200;
+    if(player.needs.thirst >= 100){
+        player.needs.thirst = 0;
+        player.needs.dehydration += 1;
     }
-    if(player.fatigue > 200){
-        player.fatigue = 200;
+    if(player.needs.fatigue >= 100){
+        player.needs.fatigue = 0;
+        player.needs.sleepDebt += 1;
     }
     return player;
 }
@@ -55,6 +58,20 @@ window.explore = function(location){
     return passage;
 }
 
+/** Function that runs whenever an actor eats an item.
+ * amt - the amount that hunger is affected.
+ * exp - The amount of botany experience gained from eating this item.
+ */
+window.eatItem = function(actor, amt, item, exp){
+    actor.needs.hunger += amt;
+    if(actor.needs.hunger < 0){
+        actor.needs.hunger = 0;
+    }
+    addExp(actor.skills.botany, exp);
+    DropItem(actor, item);
+    return actor;
+}
+
 //Determines sleep text. Camps are tied to a specific passage in each area. You may only have one camp.
 window.sleep = function(location, passage){
     var text = "Finding a suitable place on the ground, you lie down and fall asleep.";
@@ -78,16 +95,28 @@ window.forage = function(location, type, foraging){
     
     location.forageArray = [];
     if(type == "food"){
-        for(var i = 0; i < location.area.food.length; i++){
+        location.forageArray = getArray(location.area.food);
+    } else if(type == "water") {
+        
+    } else if(type == "items") {
+        location.forageArray = getArray(location.area.items);
+    }
+    return location.forageArray;
+
+    function getArray(itemArray){
+        console.log(itemArray);
+        for(var i = 0; i < itemArray.length; i++){
             //for loop variables
-            var item = location.area.food[i];
+            var item = itemArray[i];
             //Numbers are randomly generated. rolledNumber needs to be higher than numberToBeat to find an item
             rolledNumber = Math.floor(Math.random() * 90) + 1;
             numberToBeat = Math.floor(Math.random() * 100) + 1;
             //Foraging level makes items less rare. 1% rarity items become 10% at level 10
-            num = location.area.food[i].rarity * foraging.level;
+            num = itemArray[i].rarity * foraging.level;
             num *= rolledNumber ;
             difference = num - numberToBeat;
+            console.log(`Item: ${item.name}`);
+            console.log(`Difference: ${difference}`);
             while(num > numberToBeat){
                 num -= 100;
                 //Tests to see if item already exists in array
@@ -106,14 +135,11 @@ window.forage = function(location, type, foraging){
                     index = location.forageArray.length - 1;
                 }
             }
-            // console.log(location.forageArray);
         }
-    } else if("water") {
-        
-    } else if("items") {
-        for(var i = 0; i < location.area.food; i++){
-        
-        }
+        return location.forageArray;
     }
-    return location.forageArray;
+}
+
+window.wounds = function(actor){
+
 }

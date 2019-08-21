@@ -2,13 +2,16 @@
 <h2><<= $displayDay[$time.dayNum]>></h2>\
 <h3><<print $displayTime[$time.timeNum]>></h3>\
 <h3><<print $displayClock>></h3>\
+
 HP: $player.hp/$player.maxHp
 
-Hunger: $player.hunger/$player.maxHunger
-Thirst: $player.thirst/$player.maxThirst
-Fatigue: $player.fatigue/$player.maxFatigue
+Hunger: $player.needs.hunger/$player.needs.maxHunger
+Thirst: $player.needs.thirst/$player.needs.maxThirst
+Fatigue: $player.needs.fatigue/$player.needs.maxFatigue
 
-Waterskin($waterSkin)
+Malnutrition: $player.needs.malnourishment
+Dehydration: $player.needs.dehydration
+Sleep deprivation: $player.needs.sleepDebt
 
 
 :: StoryMenu

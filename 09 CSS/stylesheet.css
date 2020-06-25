@@ -1,17 +1,18 @@
-/* twine-user-stylesheet #1: "stylesheet.css" */
-/*:: Story Stylesheet [stylesheet]*/
+
 /*  Variables  */
 :root {
-    --main-color: #482714;
+    --main-color: #64361b;
     --border-color: black;
+    --background-color: #1a3300;
 }
 
 body {
   background-size: cover;
+  background-color: var(--background-color);
 }
 
 #passages {
-	  font-size: 20px;
+    font-size: 20px;
   	text-indent: 40px each-line;
     background-color: var(--main-color);
     padding: 10px;

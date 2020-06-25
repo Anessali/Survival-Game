@@ -67,8 +67,8 @@ window.eatItem = function(actor, amt, item, exp){
     if(actor.needs.hunger < 0){
         actor.needs.hunger = 0;
     }
-    addExp(actor.skills.botany, exp);
-    DropItem(actor, item);
+    addExp(actor.skills.botany, exp);   //Skills.js
+    DropItem(actor, item);              //Items.js
     return actor;
 }
 
@@ -92,8 +92,8 @@ window.forage = function(location, type, foraging){
     var rolledNumber = 0, numberToBeat = 0, num = 0, difference = 0;
     var inArray = false;
     var index = 0;
-    
     location.forageArray = [];
+
     if(type == "food"){
         location.forageArray = getArray(location.area.food);
     } else if(type == "water") {
@@ -104,10 +104,10 @@ window.forage = function(location, type, foraging){
     return location.forageArray;
 
     function getArray(itemArray){
-        console.log(itemArray);
+        // console.log(itemArray);
         for(var i = 0; i < itemArray.length; i++){
             //for loop variables
-            var item = itemArray[i];
+            var item = clone(itemArray[i]);
             //Numbers are randomly generated. rolledNumber needs to be higher than numberToBeat to find an item
             rolledNumber = Math.floor(Math.random() * 90) + 1;
             numberToBeat = Math.floor(Math.random() * 100) + 1;
@@ -115,7 +115,7 @@ window.forage = function(location, type, foraging){
             num = itemArray[i].rarity * foraging.level;
             num *= rolledNumber ;
             difference = num - numberToBeat;
-            console.log(`Item: ${item.name}`);
+            console.log(`Item: ${item.name}, ${item.qty}`);
             console.log(`Difference: ${difference}`);
             while(num > numberToBeat){
                 num -= 100;
@@ -130,6 +130,7 @@ window.forage = function(location, type, foraging){
                 if(inArray) {
                     location.forageArray[index].qty += 1;
                 } else {
+                    console.log(`Pass ${index}`);
                     location.forageArray.push(item);
                     inArray = true;
                     index = location.forageArray.length - 1;

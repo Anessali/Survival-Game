@@ -36,7 +36,7 @@ What about your eyes?
 <<set $showFooter = false>>\
 For just a moment, you wonder why you came here. Everyone had warned you not to enter <<print $location.area.name>>, yet here you are, wandering through these dense woods with not a clue as to where you're going. The trees are tall and obfuscate the sun, making it impossible to tell where it rises and sets. Even the trees themselves are arranged in a haphazard chaos and you often find yourself passing by a place that looks familiar. Yet in truth one tree doesn't look so different from another, making it hard to tell whether you're going in circles or not.
 
-Of course, it doesn't take you long to remember why you're lost in this place. It's all that damnable witches fault. She stole your memories and with that, she might as well stolen your life as well. 
+Of course, it doesn't take you long to remember why you're lost in this place. It's all that damn witches fault. She stole your memories and with that, she might as well stolen your life as well. 
 
 Every rumor had pointed you here, to <<print $location.area.name>>. Despite promises of vengeance, however, you can tell you're truly lost and you've run out of food already. If you're going to survive, then you'll have to put aside your vengeance for now to find food and water, maybe even a place to sleep. If you don't, then this place will surely become your grave.
 

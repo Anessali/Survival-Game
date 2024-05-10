@@ -1,4 +1,4 @@
-::Biomes
+:: Biomes
 <!-- Location Links -->
 <<set $location = {
     area: {},

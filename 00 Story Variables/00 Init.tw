@@ -1,9 +1,15 @@
-:: StorySettings
-ifid:a175b027-1e37-43ec-94d6-1cbac6361ca5
+/* :: StorySettings
+ifid:a175b027-1e37-43ec-94d6-1cbac6361ca5 */
+
+:: StoryData
+{
+    "ifid": "A175B027-1E37-43EC-94D6-1CBAC6361CA5",
+	"format": "SugarCube",
+	"format-version": "2.30.0"
+}
 
 :: StoryTitle
 Survival Game
-
 
 :: StoryInit
 /*  Initial Setup  */

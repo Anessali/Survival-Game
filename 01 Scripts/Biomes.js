@@ -1,0 +1,32 @@
+window.Biomes = function() {
+    let items = State.variables.items;
+    State.variables.biomes = {
+        lostForest : {
+            name: "The Lost Forest",
+            links: [
+                "Lost-Forest01",
+                "ForestRiver1",
+                "Lost-Forest02",
+                "Lost-Forest03"
+            ],
+            food : [items.food.mushroom01, items.food.mushroom02, items.food.berry01, items.food.berry02, items.food.berry03],
+            items : [items.items.rock, items.items.branch],
+            waterRarity: 0.3,
+            camp : "",
+            forageArray : []
+        }
+    }
+}
+
+window.EnterLostForest = function(){
+    let items = State.variables.items
+
+}
+
+window.SetupBiomes = function(){
+    State.variables.location = {
+        area: {},
+        outside: true
+    }
+    Biomes();
+}

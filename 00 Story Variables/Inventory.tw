@@ -1,5 +1,5 @@
 
-::Items
+:: Items
 <<set $items = {
     weapons : {},
     armor : {},

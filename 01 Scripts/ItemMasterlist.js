@@ -133,7 +133,7 @@ function Food() {
         warmth: 0,
         qty: 3,
         forageExp: 200,
-        size: 0.5,
+        size: 0.05,
         rarity: 0.01
     },
     State.variables.items.food.mushroom02 = {
@@ -161,7 +161,7 @@ function Food() {
         warmth: 0,
         qty: 3,
         forageExp: 200,
-        size: 0.5,
+        size: 0.05,
         rarity: 0.01
     },
     State.variables.items.food.berry01 = {
@@ -186,7 +186,7 @@ function Food() {
         warmth: 0,
         qty: 6,
         forageExp: 50,
-        size: 0.2,
+        size: 0.02,
         rarity: 0.02
     },
     State.variables.items.food.berry02 = {
@@ -209,7 +209,7 @@ function Food() {
         warmth: 0,
         qty: 6,
         forageExp: 50,
-        size: 0.2,
+        size: 0.02,
         rarity: 0.02
     },
     State.variables.items.food.berry03 = {

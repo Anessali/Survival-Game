@@ -1,4 +1,4 @@
-::Links [widget]
+:: Links [widget]
 /*  Widget used to exit the menu  */
 <<widget "exitMenu">><<nobr>>
     <<link "Return" $exitMenuPassage>>

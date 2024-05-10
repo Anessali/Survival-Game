@@ -1,0 +1,26 @@
+:: Abilities
+
+<<set $menu = true>>\
+<<set $showFooter = false>>\
+\
+<<nobr>><table class="container">
+	<tr>
+		<th>Name</th>
+		<th colspan="3">Description</th>
+	</tr>
+	<<for _i = 0; _i < $player.abilities.length; _i++>>
+        <<set _placement = $player.abilities[_i].placement>> 
+        <<capture _placement _i>>
+            <tr>
+                <td>
+                    
+                </td>
+                <td>
+                    <<print $player.abilities[_i].description>>
+                </td>
+            </tr>
+        <</capture>>
+	<</for>>
+</table><</nobr>>
+
+<<exitMenu>>

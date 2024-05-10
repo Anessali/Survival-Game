@@ -1,0 +1,6 @@
+sugarcube-2:
+  macros:
+    explore:
+      name: explore
+    exitMenu:
+      name: exitMenu

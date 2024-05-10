@@ -13,8 +13,14 @@
         color: "blue"
     },
 	age : 17,
-	hp : 20,
-	maxHp : 20,
+    lifeExpectancy: 70,
+    combat : {
+        hp : 20,
+	    maxHp : 20,
+        armor: 0,
+        evasion: 0,
+        defense: armor + evasion,
+    }
     needs: {
         hunger: 0,
         maxHunger: 100,
@@ -29,6 +35,7 @@
     eatText : "",
     drinkText : "",
     inventory : [],
+    abilities : [],
     inventorySize : 0,
     maxInventorySize : 10,
     weapon : {},

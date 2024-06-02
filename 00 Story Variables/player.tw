@@ -4,6 +4,9 @@
 	lastName : "",
 	gender : "male",
 	race : "human",
+    background : {
+
+    },
     hair : {
         color: "red",
         style: "messy",
@@ -18,9 +21,8 @@
         hp : 20,
 	    maxHp : 20,
         armor: 0,
-        evasion: 0,
-        defense: armor + evasion,
-    }
+        evasion: 0
+    },
     needs: {
         hunger: 0,
         maxHunger: 100,

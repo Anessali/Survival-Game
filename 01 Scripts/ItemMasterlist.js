@@ -240,6 +240,29 @@ function Food() {
         size: 0.2,
         rarity: 0.02
     }
+    State.variables.items.food.trailSnack = {
+        id: "trailSnack",
+        name: "Trail Snack",
+        description: function(actor, item){
+            Dialog.setup('Item Description');
+            Dialog.wiki(`.\n\nDamage: ${item.damage}\nSize: ${item.size}`);
+            Dialog.open();
+        }, 
+        eat : function(actor, item){
+            actor.eatText = "You bite into your snack, savoring the taste.";
+            eatItem(actor, -40, item, 0);
+            // addExp(actor.skills.botany, 50);
+            DropItem(actor, item, isEquipped);
+
+            return actor;
+        },
+        placement : "weapon",
+        damage: -2,
+        qty: 1,
+        // forageExp: 50,
+        size: 0.2,
+        rarity: 0.02
+    }
 }
 
 function Drinks() {
@@ -306,5 +329,5 @@ window.AddStaticItems = function(){
     Food();
     Drinks();
     Misc();
-    // console.log(State.variables.items); //If uncommented, prints all game items in the console
+    console.log(State.variables.items); //If uncommented, prints all game items in the console
 }

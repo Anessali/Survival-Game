@@ -22,3 +22,9 @@ $(document).on(':passageend', function () {
         State.variables.player.eyes.color = $(this).val();
     });
 });
+
+$(document).on(':passageend', function () {
+    $('.background').on('change', function () {
+        State.variables.player.background = $(this).val();
+    });
+});

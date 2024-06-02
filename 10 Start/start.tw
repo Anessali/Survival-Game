@@ -1,36 +1,39 @@
-
 :: Start
 <<nobr>>
     <<set $showFooter = false>>
     <<set $menu = false>>
-    <<set $player.weapon = $items.weapons.sword001>>
+    <<set $player.weapon = $items.weapons.noweapon>>
     <<set $player.outfit.chest = $items.armor.cottonShirt01>>
     <<set $player.outfit.legs = $items.armor.clothPants01>>
     <<set $player.outfit.feet = $items.armor.leatherBoots01>>
-<</nobr>>\
-Test numero tres. 🥺
-
-[[Character creation.|WandererStart2]]
-
-:: WandererStart2
-<<nobr>>
-    <<set $showFooter = false>>
-    <<set _hairArray = ["red", "brown", "blonde", "black"]>>
+    <<set _hairArray = ["brown", "blonde", "black", "red"]>>
     <<set _eyeArray = ["blue", "green", "brown", "hazel"]>>
     <<set $location.area = $lostForest>>
     <<set $location.outside = true>>
 <</nobr>>\
+It's been days since you got lost. You wish you could say this situation was under control, but you've already eaten all your food and there's been no signs of civilization. There's nothing but forest as far as the eye can see.
+
+With a sigh you take a seat on a fallen tree and think about your life.
+
 Are you a man or a woman?
 <<radiobutton "$player.gender" "male" checked>> Man <<radiobutton "$player.gender" "female">> Woman
 
-Red hair and blue eyes are the most common combination in Eclasia, but brown and blonde hair are both very common as well. Black hair is usually a sign of Sooyanese ancestry, making it uncommon but certainly not unheard of. What color is yours?
+What color is your hair?
 <<print HtmlSelect("hair", _hairArray)>>
 
 What about your eyes?
 <<print HtmlSelect("eyes", _eyeArray)>>
 
-[[Continue|WandererStart3]]
+/* [[Of course, there's more to you than that.|CharacterBackground]] */
+[[Begin|WandererStart3]]
 
+
+:: CharacterBackground
+<<nobr>>
+    <<set _backgroundArray = []>>
+<</nobr>>\
+What kind of person were you?
+<<print HtmlSelect("background")>>
 
 :: WandererStart3
 <<set $showFooter = false>>\

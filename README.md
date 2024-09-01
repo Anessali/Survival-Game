@@ -9,14 +9,12 @@ Although it's probably self explanatory that I've been using both the PowerShell
 - [x] Clock displays in-game time
 - [x] Day and night cycles
 - [x] Days of the week
-- [ ] 
 
 ## Inventory System - Complete
 I feel like the inventory system is kind of the backbone. Players need to be able to pick up items and use them, whether it's to use a rock as a makeshift weapon or to eat some mushrooms they found.
 - [x] Player can pick up and discard items
 - [x] Player can attempt to eat any item. Not everything is edible, though.
 - [x] Most items can be equipped as a weapon.
-- [ ]
 
 ## Survival Mechanics
 Players need to manage hunger, thirst, and fatigue. In addition, they need to be able to set up a place to relax, store items, and heal injuries. 
@@ -30,7 +28,6 @@ Players need to manage hunger, thirst, and fatigue. In addition, they need to be
 ## Campsite
 Need to setup the ability to create a campsite and move it.
 - [ ] Able to setup camp.
-- [ ] 
 
 ## Skills & Abilities
 

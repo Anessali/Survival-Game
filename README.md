@@ -10,7 +10,7 @@ Although it's probably self explanatory that I've been using both the PowerShell
 - [x] Day and night cycles
 - [x] Days of the week
 
-## Inventory System - Complete
+## Inventory System
 I feel like the inventory system is kind of the backbone. Players need to be able to pick up items and use them, whether it's to use a rock as a makeshift weapon or to eat some mushrooms they found.
 - [x] Player can pick up and discard items
 - [x] Player can attempt to eat any item. Not everything is edible, though.

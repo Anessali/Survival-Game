@@ -34,7 +34,6 @@ Need to setup the ability to create a campsite and move it.
 - [x] Skills
 - [ ] Abilities
 - [ ] Skills
-- [ ] Skills
 
 ## Combat
 I haven't gotten started on combat yet, but I do consider this a must before I'm willing to start calling the game a beta release. 

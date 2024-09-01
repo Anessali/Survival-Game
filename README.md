@@ -1,5 +1,8 @@
 This is a project I work on for fun sometimes that may never be completed. It's currently a survival/exploration game, but if I add combat and NPC's, it may end up being a sort of RPG.
 
+### A Note on Compiling
+Although it's probably self explanatory that I've been using both the PowerShell and the batch script to compile, they call upon a [third party compiler called Tweego](https://www.motoslave.net/tweego/) to work. So if you want to compile this game yourself, you'll need to download that compiler and add the directory containing its executable file to your system environment variables.
+
 ## Passage of Time
 
 - [x] Time passes
